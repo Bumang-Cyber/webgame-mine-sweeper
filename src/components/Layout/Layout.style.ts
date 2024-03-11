@@ -11,6 +11,6 @@ export const Wrapper = styled.div`
 
 export const Container = styled.main`
   width: 720px;
-  height: 100px;
+  min-height: 100px;
   background-color: ${({ theme }) => theme.color.lightGray400};
 `;
