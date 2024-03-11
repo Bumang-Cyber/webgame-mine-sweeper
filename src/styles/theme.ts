@@ -1,69 +1,94 @@
-import { css } from "styled-components";
+import { css, Interpolation, CSSProp } from "styled-components";
 
-const typoCreator = (fontSize: string, fontWeight: number) => {
+const fontCreator = (fontSize: string, fontWeight: number, lineHeight: string) => {
   return css`
     font-size: ${fontSize};
     font-weight: ${fontWeight};
+    line-height: ${lineHeight};
   `;
 };
 
-export const theme = {
+interface Theme {
   color: {
-    lightOrange: "#FFEDDA",
-    percentOrange: "#FF7C17",
-    darkOrange: "#E76500",
+    darkGray900: string;
+    darkGray800: string;
+    darkGray700: string;
+    darkGray600: string;
+    darkGray500: string;
+    darkGray400: string;
+    darkGray300: string;
+    lightGray400: string;
+    lightGray300: string;
+    lightGray200: string;
+    lightGray100: string;
+    linkGreen700: string;
+    linkGreen600: string;
+    linkGreen500: string;
+    linkError: string;
+  };
+  font: {
+    subtitle1: Interpolation<object>[];
+    subtitle2: Interpolation<object>[];
+    subtitle3: Interpolation<object>[];
+    subtitle4: Interpolation<object>[];
+    subtitle5b: Interpolation<object>[];
+    subtitle5r: Interpolation<object>[];
 
-    lightBlue: "#D5EBFF",
-    percentBlue: "#0A76DA",
-    darkBlue: "#004789",
+    body1b: Interpolation<object>[];
+    body1r: Interpolation<object>[];
+    body2b: Interpolation<object>[];
+    body2r: Interpolation<object>[];
+    body3b: Interpolation<object>[];
+    body3r: Interpolation<object>[];
 
-    cautionRed: "#FF4949",
+    caption1b: Interpolation<object>[];
+    caption1l: Interpolation<object>[];
+    caption2b: Interpolation<object>[];
+    caption2r: Interpolation<object>[];
+  };
+  scroll: CSSProp;
+  unableToDrag: CSSProp;
+  grabbable: CSSProp;
+  textOverflow: CSSProp;
+}
 
-    black: "#151515",
-    white: "#FFFFFF",
-
-    greyScale1: "#404040",
-    greyScale2: "#686868",
-    greyScale3: "#999999",
-    greyScale4: "#B8B8B8",
-    greyScale5: "#CDCDCD",
-    greyScale6: "#E9E9E9",
-    greyScale7: "#F6F6F6",
-
-    yanoljaPink: "#FF3478",
+export const theme: Theme = {
+  color: {
+    darkGray900: "#121212",
+    darkGray800: "#1E1E1E",
+    darkGray700: "#2C2C2C",
+    darkGray600: "#373737",
+    darkGray500: "#4D4D4D",
+    darkGray400: "#616161",
+    darkGray300: "#727272",
+    lightGray400: "#B4B4B4",
+    lightGray300: "#D9D9D9",
+    lightGray200: "#EDE5E5",
+    lightGray100: "#EDEDED",
+    linkGreen700: "#5B9A74",
+    linkGreen600: "#5FD18D",
+    linkGreen500: "#56F094",
+    linkError: "#9D1414",
   },
-  typo: {
-    title1: typoCreator("1.625rem", 700),
-    title2: typoCreator("1.25rem", 700),
-    title3: typoCreator("1.125rem", 700),
-    title4: typoCreator("1.125rem", 600),
-    title5: typoCreator("1rem", 500),
+  font: {
+    subtitle1: fontCreator("40px", 700, "150%"),
+    subtitle2: fontCreator("32px", 700, "150%"),
+    subtitle3: fontCreator("28px", 700, "150%"),
+    subtitle4: fontCreator("24px", 700, "150%"),
+    subtitle5b: fontCreator("20px", 700, "150%"),
+    subtitle5r: fontCreator("20px", 400, "150%"),
 
-    body1: typoCreator("1rem", 700),
-    body2: typoCreator("1rem", 600),
-    body3: typoCreator("0.875rem", 600),
-    body4: typoCreator("0.875rem", 500),
-    body5: typoCreator("0.75rem", 600),
-    body6: typoCreator("0.75rem", 500),
+    body1b: fontCreator("18px", 700, "150%"),
+    body1r: fontCreator("18px", 400, "150%"),
+    body2b: fontCreator("16px", 700, "150%"),
+    body2r: fontCreator("16px", 400, "150%"),
+    body3b: fontCreator("14px", 700, "160%"),
+    body3r: fontCreator("14px", 500, "160%"),
 
-    button1: typoCreator("1.125rem", 500),
-    button2: typoCreator("1rem", 700),
-    button3: typoCreator("1rem", 500),
-    button4: typoCreator("0.875rem", 700),
-    button5: typoCreator("0.875rem", 600),
-    button6: typoCreator("0.75rem", 600),
-    button7: typoCreator("0.75rem", 500),
-
-    caption1: typoCreator("0.875rem", 400),
-    caption2: typoCreator("0.75rem", 700),
-    caption3: typoCreator("0.75rem", 500),
-    caption4: typoCreator("0.625rem", 700),
-    caption5: typoCreator("0.625rem", 500),
-  },
-  border: {
-    strokeThin: "1px solid #E9E9E9",
-    strokeWide: "1px solid #F6F6F6",
-    strokeDash: "1px solid #CDCDCD",
+    caption1b: fontCreator("12px", 700, "150%"),
+    caption1l: fontCreator("12px", 300, "150%"),
+    caption2b: fontCreator("10px", 700, "160%"),
+    caption2r: fontCreator("10px", 400, "160%"),
   },
   scroll: css`
     overflow-y: scroll;
@@ -81,12 +106,18 @@ export const theme = {
     -ms-user-select: none;
     user-select: none;
   `,
+  grabbable: css`
+    cursor: move; /* fallback if grab cursor is unsupported */
+    cursor: grab;
+    cursor: -moz-grab;
+    cursor: -webkit-grab;
+  `,
+  textOverflow: css`
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  `,
 };
 
-export type TypoKeys = keyof typeof theme.typo;
+export type fontKeys = keyof typeof theme.font;
 export type ColorKeys = keyof typeof theme.color;
-
-export const breakpoints = {
-  tablet: "576px",
-  mobile: "390px",
-};
