@@ -50,6 +50,8 @@ interface Theme {
   unableToDrag: CSSProp;
   grabbable: CSSProp;
   textOverflow: CSSProp;
+  borderInset: CSSProp;
+  borderOutset: CSSProp;
 }
 
 export const theme: Theme = {
@@ -116,6 +118,12 @@ export const theme: Theme = {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+  `,
+  borderInset: css`
+    border: 3px inset white;
+  `,
+  borderOutset: css`
+    border: 2px outset white;
   `,
 };
 

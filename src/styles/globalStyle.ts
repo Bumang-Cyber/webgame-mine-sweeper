@@ -1,6 +1,11 @@
 import { createGlobalStyle } from "styled-components";
+import playDigital from "../assets/play_digital.ttf";
 
 export const GlobalStyle = createGlobalStyle`
+  @font-face {
+    font-family: 'digital';
+    src: local("digital"), url(${playDigital}) format('truetype');
+  }
   *{margin:0;padding:0;font:inherit;color:inherit;}
   *, :after, :before {box-sizing:border-box;}
   :root {-webkit-tap-highlight-color:transparent;-webkit-text-size-adjust:100%;text-size-adjust:100%;cursor:default;overflow-wrap:break-word;word-break:break-word;tab-size:4;}

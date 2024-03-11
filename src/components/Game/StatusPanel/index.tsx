@@ -19,7 +19,8 @@ export default StatusPanel;
 
 const StatusPanelContainer = styled.thead`
   width: 100%;
-  height: 32px;
+
+  ${({ theme }) => theme.borderInset}
 `;
 
 const Tr = styled.tr`
@@ -27,5 +28,4 @@ const Tr = styled.tr`
   justify-content: space-between;
   width: 100%;
   height: 100%;
-  background-color: black;
 `;

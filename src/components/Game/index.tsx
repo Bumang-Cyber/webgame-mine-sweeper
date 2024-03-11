@@ -15,9 +15,9 @@ export default Game;
 
 export const GameContainer = styled.table`
   width: 100%;
-  background-color: red;
-  padding: 20px;
-  gap: 20px;
+  padding: 8px;
+  gap: 8px;
+  ${({ theme }) => theme.borderOutset}
 
   display: flex;
   flex-direction: column;

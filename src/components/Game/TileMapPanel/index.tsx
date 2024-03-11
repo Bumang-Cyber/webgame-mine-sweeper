@@ -26,15 +26,11 @@ const TileMapPanel = () => {
 export default TileMapPanel;
 
 const TileMapContainer = styled.tbody`
-  background-color: blue;
-
   display: flex;
   flex-direction: column;
+  ${({ theme }) => theme.borderInset}
 `;
 
 const RowWrapper = styled.tr`
-  background-color: aliceblue;
-  border: 1px solid black;
-
   display: flex;
 `;

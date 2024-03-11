@@ -15,11 +15,13 @@ const Tile = ({ item, rowIndex, colIndex }: TileProps) => {
 export default Tile;
 
 export const TileContainer = styled.td`
-  width: 24px;
-  height: 24px;
-  border: 1px solid black;
+  width: 16px;
+  height: 16px;
+  background-color: ${({ theme }) => theme.color.lightGray100};
+  font-size: 4px;
 
   display: flex;
   justify-content: center;
   align-items: center;
+  ${({ theme }) => theme.borderOutset}
 `;

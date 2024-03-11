@@ -20,7 +20,6 @@ const Layout = ({ children }: LayoutProps) => {
 export default Layout;
 
 export const ScreenWrapper = styled.div`
-  // TODO: 폰트 이쁜걸로
   width: 100vw;
   height: 100vh;
 
@@ -32,8 +31,8 @@ export const ScreenWrapper = styled.div`
 `;
 
 export const OuterContainer = styled.main`
-  padding: 20px;
+  padding: 8px;
   padding-top: 0;
-  background-color: beige;
-  border-radius: 16px;
+  background-color: ${({ theme }) => theme.color.lightGray100};
+  border-radius: 8px;
 `;
