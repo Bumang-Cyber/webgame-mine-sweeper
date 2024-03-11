@@ -6,6 +6,6 @@ const ControlPanel = () => {
 
 export default ControlPanel;
 
-const Container = styled.section`
+const Container = styled.thead`
   display: flex;
 `;

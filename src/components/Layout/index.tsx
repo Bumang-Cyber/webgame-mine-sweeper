@@ -1,15 +1,20 @@
-import * as S from "./Layout.style";
+import styled from "styled-components";
 
 interface LayoutProps {
   children: React.ReactNode;
 }
 
 const Layout = ({ children }: LayoutProps) => {
-  return (
-    <S.Wrapper>
-      <S.Container>{children}</S.Container>;
-    </S.Wrapper>
-  );
+  return <TableContainer>{children}</TableContainer>;
 };
 
 export default Layout;
+
+export const TableContainer = styled.table`
+  width: 100vw;
+  height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;

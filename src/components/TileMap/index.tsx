@@ -13,7 +13,7 @@ const TileMap = () => {
   return (
     <Container>
       {tileMapArr.map((row, rowIndex) => (
-        <RowWrapper>
+        <RowWrapper key={rowIndex}>
           {row.map((item, colIndex) => (
             <Tile rowIndex={rowIndex} colIndex={colIndex} key={`${rowIndex}${colIndex}`} item={item} />
           ))}
@@ -25,7 +25,7 @@ const TileMap = () => {
 
 export default TileMap;
 
-const Container = styled.section`
+const Container = styled.tbody`
   //FIX: level에 따라 조건적으로 width가 바뀌게
   width: 100%;
   //FIX: level에 따라 조건적으로 height가 바뀌게
