@@ -8,6 +8,7 @@ interface TileProps {
 }
 
 const Tile = ({ item, rowIndex, colIndex }: TileProps) => {
+  item.isOpened;
   return <TileContainer>{`<${rowIndex}&${colIndex}>`}</TileContainer>;
 };
 

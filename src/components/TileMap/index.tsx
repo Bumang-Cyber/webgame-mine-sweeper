@@ -11,7 +11,7 @@ const TileMap = () => {
   console.log(tileMapArr);
 
   return (
-    <Container>
+    <Container $height={levels[currentLevel].screen.width}>
       {tileMapArr.map((row, rowIndex) => (
         <RowWrapper key={rowIndex}>
           {row.map((item, colIndex) => (
@@ -25,11 +25,11 @@ const TileMap = () => {
 
 export default TileMap;
 
-const Container = styled.tbody`
+const Container = styled.tbody<{ $height: string }>`
   //FIX: level에 따라 조건적으로 width가 바뀌게
   width: 100%;
   //FIX: level에 따라 조건적으로 height가 바뀌게
-  height: 200px;
+  height: ${({ $height }) => $height};
   background-color: blue;
 
   display: flex;
