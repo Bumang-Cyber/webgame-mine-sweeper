@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { TileType } from "../../../types/tile";
+import { TileType } from "../../../../types/tile";
 
 interface TileProps {
   rowIndex: number;
@@ -15,7 +15,8 @@ const Tile = ({ item, rowIndex, colIndex }: TileProps) => {
 export default Tile;
 
 export const TileContainer = styled.td`
-  flex-grow: 1;
+  width: 24px;
+  height: 24px;
   border: 1px solid black;
 
   display: flex;

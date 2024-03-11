@@ -1,17 +1,17 @@
 import { useState } from "react";
 import styled from "styled-components";
-import { type LevelKeyType } from "../../types/level";
-import generateTileMap from "../../utils/generateTileMap";
-import { levels } from "../../constants/level";
+import { type LevelKeyType } from "../../../types/level";
+import generateTileMap from "../../../utils/generateTileMap";
+import { levels } from "../../../constants/level";
 import Tile from "./Tile";
 
-const TileMap = () => {
+const TileMapPanel = () => {
   const [currentLevel] = useState<LevelKeyType>("BEGINNER");
   const tileMapArr = generateTileMap(levels[currentLevel].X, levels[currentLevel].Y);
   console.log(tileMapArr);
 
   return (
-    <Container $height={levels[currentLevel].screen.width}>
+    <TileMapContainer>
       {tileMapArr.map((row, rowIndex) => (
         <RowWrapper key={rowIndex}>
           {row.map((item, colIndex) => (
@@ -19,17 +19,13 @@ const TileMap = () => {
           ))}
         </RowWrapper>
       ))}
-    </Container>
+    </TileMapContainer>
   );
 };
 
-export default TileMap;
+export default TileMapPanel;
 
-const Container = styled.tbody<{ $height: string }>`
-  //FIX: level에 따라 조건적으로 width가 바뀌게
-  width: 100%;
-  //FIX: level에 따라 조건적으로 height가 바뀌게
-  height: ${({ $height }) => $height};
+const TileMapContainer = styled.tbody`
   background-color: blue;
 
   display: flex;
@@ -37,8 +33,6 @@ const Container = styled.tbody<{ $height: string }>`
 `;
 
 const RowWrapper = styled.tr`
-  width: 100%;
-  height: 100%;
   background-color: aliceblue;
   border: 1px solid black;
 

@@ -1,20 +1,18 @@
 import { useState } from "react";
-import Layout from "./components/Layout";
-import { levels } from "./constants/level";
 import { type LevelKeyType } from "./types/level";
 
-import ControlPanel from "./components/ContorlPanel";
-import TileMap from "./components/TileMap";
+import Layout from "./components/Layout";
+import Game from "./components/Game";
+import Option from "./components/Option";
 
 function App() {
   // TODO: currentLevel을 전역상태관리로 바꾸기
   const [currentLevel] = useState<LevelKeyType>("BEGINNER");
-  const { screen } = levels[currentLevel];
 
   return (
-    <Layout screen={screen}>
-      <ControlPanel />
-      <TileMap />
+    <Layout>
+      <Option />
+      <Game />
     </Layout>
   );
 }
