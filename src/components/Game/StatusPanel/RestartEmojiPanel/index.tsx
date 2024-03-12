@@ -5,7 +5,6 @@ const RestartEmojiPanel = () => {
   const { currentPlayingState, playingSwitchHandler } = usePlayingSwitch();
 
   const clickEmojiHander = () => {
-    if (currentPlayingState === "stale") return;
     playingSwitchHandler("stale");
   };
 
