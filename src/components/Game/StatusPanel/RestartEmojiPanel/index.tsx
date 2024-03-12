@@ -1,7 +1,15 @@
+import usePlayingSwitch from "@/hooks/usePlayingSwitch";
 import styled from "styled-components";
 
 const RestartEmojiPanel = () => {
-  return <RestartEmojiContainer>🙂</RestartEmojiContainer>;
+  const { currentPlayingState, playingSwitchHandler } = usePlayingSwitch();
+
+  const clickEmojiHander = () => {
+    if (currentPlayingState === "stale") return;
+    playingSwitchHandler("stale");
+  };
+
+  return <RestartEmojiContainer onClick={clickEmojiHander}>🙂</RestartEmojiContainer>;
 };
 
 export default RestartEmojiPanel;
