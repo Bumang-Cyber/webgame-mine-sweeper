@@ -6,11 +6,9 @@ import useLevelSwitch from "../../../hooks/useLevelSwitch";
 
 const TileMapPanel = () => {
   const { currentLevelStatus } = useLevelSwitch();
-  console.log(currentLevelStatus, "currentLevelStatus");
   const { X, Y } = currentLevelStatus;
 
   const tileMapArr = generateTileMap(X, Y);
-  console.log(tileMapArr);
 
   return (
     <TileMapContainer>

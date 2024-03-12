@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 
 import { type LevelKeyType } from "../../../types/level";
@@ -6,13 +6,17 @@ import { FaCheck } from "react-icons/fa";
 import useLevelSwitch from "../../../hooks/useLevelSwitch";
 
 const Dropdown = () => {
+  const { currentLevel, levelSwitchHandler, levelKeys } = useLevelSwitch();
+
   const [isVisible, setIsVisible] = useState(false);
 
   const switchVisibleHandler = () => {
     setIsVisible((prev) => !prev);
   };
 
-  const { currentLevel, levelSwitchHandler, levelKeys } = useLevelSwitch();
+  useEffect(() => {
+    setIsVisible(false);
+  }, [currentLevel]);
 
   return (
     <Wrapper>
