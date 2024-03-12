@@ -7,7 +7,7 @@ const MineLeftPanel = () => {
 export default MineLeftPanel;
 
 const MineLeftContainer = styled.td`
-  width: 32px;
+  width: 36px;
   font-family: "digital";
 
   display: flex;
@@ -18,5 +18,5 @@ const MineLeftContainer = styled.td`
   background-color: black;
 
   ${({ theme }) => theme.textOverflow};
-  font-size: 12px;
+  font-size: 24px;
 `;

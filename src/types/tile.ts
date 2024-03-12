@@ -1,4 +1,5 @@
 export interface TileType {
+  id: string;
   isOpened: boolean;
   isMined: boolean;
   isFlagged: boolean;

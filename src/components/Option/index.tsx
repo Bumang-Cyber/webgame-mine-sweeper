@@ -1,15 +1,24 @@
 import { useState } from "react";
 import styled from "styled-components";
 
+import Dropdown from "./Dropdown";
+
 import { IoVolumeMedium } from "react-icons/io5";
 import { IoVolumeMute } from "react-icons/io5";
+import { AiOutlineColumnWidth } from "react-icons/ai";
 
 const Option = () => {
   const [isSoundOn, setIsSoundOn] = useState(true);
+
   return (
     <OptionContainer>
-      <GameOptionButton>Game</GameOptionButton>
-      <SoundOnOffButton>{isSoundOn ? <IoVolumeMedium /> : <IoVolumeMute />}</SoundOnOffButton>
+      <Dropdown />
+      <RightOption>
+        <IconButton>
+          <AiOutlineColumnWidth />
+        </IconButton>
+        <IconButton>{isSoundOn ? <IoVolumeMedium /> : <IoVolumeMute />}</IconButton>
+      </RightOption>
     </OptionContainer>
   );
 };
@@ -24,10 +33,16 @@ export const OptionContainer = styled.section`
   justify-content: space-between;
 `;
 
-export const GameOptionButton = styled.button`
-  ${({ theme }) => theme.font.body3r}
+export const RightOption = styled.div`
+  display: flex;
+  gap: 8px;
 `;
 
-export const SoundOnOffButton = styled.button`
+export const IconButton = styled.button`
   ${({ theme }) => theme.font.subtitle5r}
+  border-radius: 4px;
+
+  &:hover {
+    background-color: ${({ theme }) => theme.color.lightGray300};
+  }
 `;

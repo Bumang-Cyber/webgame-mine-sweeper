@@ -23,5 +23,11 @@ export const TileContainer = styled.td`
   display: flex;
   justify-content: center;
   align-items: center;
-  ${({ theme }) => theme.borderOutset}
+  ${({ theme }) => theme.borderOutset};
+
+  // TODO: 마우스 우클릭 새로운 창 막기
+  transition: all 0.1s ease-in-out;
+  &:hover {
+    background-color: ${({ theme }) => theme.color.lightGray400};
+  }
 `;

@@ -5,6 +5,7 @@ const generateTileMap = (X: number, Y: number) => {
     return new Array(Y).fill(null).map(
       () =>
         ({
+          id: `${X}&${Y}`,
           isOpened: false,
           isMined: false,
           isFlagged: false,

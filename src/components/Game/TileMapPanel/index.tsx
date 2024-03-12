@@ -15,7 +15,7 @@ const TileMapPanel = () => {
       {tileMapArr.map((row, rowIndex) => (
         <RowWrapper key={rowIndex}>
           {row.map((item, colIndex) => (
-            <Tile rowIndex={rowIndex} colIndex={colIndex} key={`${rowIndex}${colIndex}`} item={item} />
+            <Tile rowIndex={rowIndex} colIndex={colIndex} key={item.id} item={item} />
           ))}
         </RowWrapper>
       ))}
