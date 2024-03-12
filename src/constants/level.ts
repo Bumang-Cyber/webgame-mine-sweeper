@@ -1,4 +1,4 @@
-import { LevelKeyType } from "./../types/level";
+import { LevelKeyType } from "@/types/level";
 
 interface LevelsProps {
   Beginner: {

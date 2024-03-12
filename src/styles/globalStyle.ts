@@ -1,5 +1,5 @@
 import { createGlobalStyle } from "styled-components";
-import playDigital from "../assets/play_digital.ttf";
+import playDigital from "@assets/play_digital.ttf";
 
 export const GlobalStyle = createGlobalStyle`
   @font-face {

@@ -1,9 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
-import { change } from "../store/levelSlice";
+import { change } from "@store/levelSlice";
 
-import { type RootState } from "../store/index";
-import { type LevelKeyType } from "../types/level";
-import { levels } from "../constants/level";
+import { type RootState } from "@store/index";
+import { type LevelKeyType } from "@/types/level";
+import { levels } from "@/constants/level";
 
 const useLevelSwitch = () => {
   // useLevelSwitch 훅으로 정리하기 (커스텀 레벨까지)

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { TileType } from "../../../../types/tile";
+import { TileType } from "@/types/tile";
 
 interface TileProps {
   rowIndex: number;

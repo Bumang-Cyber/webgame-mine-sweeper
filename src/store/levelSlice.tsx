@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { LevelKeyType } from "../types/level";
+import { LevelKeyType } from "@/types/level";
 
 type InitialState = {
   value: LevelKeyType;

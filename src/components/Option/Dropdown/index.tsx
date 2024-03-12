@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 
-import { type LevelKeyType } from "../../../types/level";
+import { type LevelKeyType } from "@/types/level";
 import { FaCheck } from "react-icons/fa";
-import useLevelSwitch from "../../../hooks/useLevelSwitch";
+import useLevelSwitch from "@hooks/useLevelSwitch";
 
 const Dropdown = () => {
   const { currentLevel, levelSwitchHandler, levelKeys } = useLevelSwitch();

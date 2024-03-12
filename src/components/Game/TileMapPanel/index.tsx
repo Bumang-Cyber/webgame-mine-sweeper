@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import generateTileMap from "../../../utils/generateTileMap";
+import generateTileMap from "@utils/generateTileMap";
 
 import Tile from "./Tile";
-import useLevelSwitch from "../../../hooks/useLevelSwitch";
+import useLevelSwitch from "@hooks/useLevelSwitch";
 
 const TileMapPanel = () => {
   const { currentLevelStatus } = useLevelSwitch();

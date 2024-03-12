@@ -1,4 +1,4 @@
-import { TileType } from "../types/tile";
+import { TileType } from "@/types/tile";
 
 const generateTileMap = (X: number, Y: number) => {
   const arr = new Array(Y).fill([]).map(() => {
