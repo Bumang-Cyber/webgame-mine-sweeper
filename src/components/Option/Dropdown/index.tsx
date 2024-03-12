@@ -2,34 +2,17 @@ import { useState } from "react";
 import styled from "styled-components";
 
 import { type LevelKeyType } from "../../../types/level";
-import { type RootState } from "../../../store/index";
-
-import { useDispatch, useSelector } from "react-redux";
-import { change } from "../../../store/levelSlice";
 import { FaCheck } from "react-icons/fa";
+import useLevelSwitch from "../../../hooks/useLevelSwitch";
 
 const Dropdown = () => {
   const [isVisible, setIsVisible] = useState(false);
 
-  // useLevelSwitch 훅으로 정리하기 (커스텀 레벨까지)
-  const dispatch = useDispatch();
-  const currentLevel = useSelector((state: RootState) => {
-    return state.levels.value;
-  });
-
-  const levels: LevelKeyType[] = ["Beginner", "Intermediate", "Expert", "Custom"];
-
-  const levelSwitchHandler = (name: LevelKeyType) => {
-    if (name === "Custom") {
-      return;
-    } else {
-      dispatch(change(name));
-    }
-  };
-
   const switchVisibleHandler = () => {
     setIsVisible((prev) => !prev);
   };
+
+  const { currentLevel, levelSwitchHandler, levelKeys } = useLevelSwitch();
 
   return (
     <Wrapper>
@@ -40,7 +23,7 @@ const Dropdown = () => {
           New (f12)
         </MenuItem>
         <Divider />
-        {levels.map((name) => (
+        {levelKeys.map((name) => (
           <MenuItem onClick={() => levelSwitchHandler(name)} key={name} $cur={name} $name={currentLevel}>
             <FaCheck className="icon" />
             {name}
