@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { TileType } from "@/types/tile";
+import useTileSwitch from "@/hooks/useTileSwitch";
 
 interface TileProps {
   rowIndex: number;
@@ -8,8 +9,9 @@ interface TileProps {
 }
 
 const Tile = ({ item, rowIndex, colIndex }: TileProps) => {
-  item.isOpened;
-  return <TileContainer>{`<${rowIndex}&${colIndex}>`}</TileContainer>;
+  const { tileClickHandler } = useTileSwitch(item);
+
+  return <TileContainer onClick={tileClickHandler}>{}</TileContainer>;
 };
 
 export default Tile;

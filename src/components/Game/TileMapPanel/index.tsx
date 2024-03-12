@@ -8,14 +8,21 @@ const TileMapPanel = () => {
   const { currentLevelStatus } = useLevelSwitch();
   const { X, Y } = currentLevelStatus;
 
+  // TODO: 이 배열을 state화 하기
   const tileMapArr = generateTileMap(X, Y);
 
+  console.log(tileMapArr);
   return (
     <TileMapContainer>
       {tileMapArr.map((row, rowIndex) => (
         <RowWrapper key={rowIndex}>
           {row.map((item, colIndex) => (
-            <Tile rowIndex={rowIndex} colIndex={colIndex} key={`${rowIndex}&${colIndex}`} item={item} />
+            <Tile //
+              rowIndex={rowIndex}
+              colIndex={colIndex}
+              key={`${rowIndex}&${colIndex}`}
+              item={item}
+            />
           ))}
         </RowWrapper>
       ))}
