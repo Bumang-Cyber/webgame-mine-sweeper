@@ -1,11 +1,31 @@
 import { useState } from "react";
 import styled from "styled-components";
 
-import { levelMenus } from "./levelMenus";
+import { type LevelKeyType } from "../../../types/level";
+import { type RootState } from "../../../store/index";
+
+import { useDispatch, useSelector } from "react-redux";
+import { change } from "../../../store/levelSlice";
 import { FaCheck } from "react-icons/fa";
 
 const Dropdown = () => {
   const [isVisible, setIsVisible] = useState(false);
+
+  // useLevelSwitch 훅으로 정리하기 (커스텀 레벨까지)
+  const dispatch = useDispatch();
+  const currentLevel = useSelector((state: RootState) => {
+    return state.levels.value;
+  });
+
+  const levels: LevelKeyType[] = ["Beginner", "Intermediate", "Expert", "Custom"];
+
+  const levelSwitchHandler = (name: LevelKeyType) => {
+    if (name === "Custom") {
+      return;
+    } else {
+      dispatch(change(name));
+    }
+  };
 
   const switchVisibleHandler = () => {
     setIsVisible((prev) => !prev);
@@ -15,19 +35,19 @@ const Dropdown = () => {
     <Wrapper>
       <GameOption onClick={switchVisibleHandler}>Game</GameOption>
       <MenuContainer $isVisible={isVisible}>
-        <MenuItem $select={false}>
+        <MenuItem>
           <FaCheck className="icon" />
           New (f12)
         </MenuItem>
         <Divider />
-        {levelMenus.map(({ name, select }) => (
-          <MenuItem $select={select}>
+        {levels.map((name) => (
+          <MenuItem onClick={() => levelSwitchHandler(name)} key={name} $cur={name} $name={currentLevel}>
             <FaCheck className="icon" />
             {name}
           </MenuItem>
         ))}
         <Divider />
-        <MenuItem $select={false}>
+        <MenuItem>
           <FaCheck className="icon" />
           Personal Best
         </MenuItem>
@@ -60,7 +80,7 @@ const MenuContainer = styled.div<{ $isVisible: boolean }>`
   border: 4px double ${({ theme }) => theme.color.darkGray600};
 `;
 
-const MenuItem = styled.div<{ $select: boolean }>`
+const MenuItem = styled.div<{ $cur?: LevelKeyType; $name?: LevelKeyType }>`
   padding: 2px 4px;
   width: 88px;
   ${({ theme }) => theme.font.caption2b}
@@ -75,7 +95,7 @@ const MenuItem = styled.div<{ $select: boolean }>`
   }
 
   .icon {
-    opacity: ${({ $select }) => !$select && 0};
+    opacity: ${({ $cur, $name }) => ($name && $cur === $name ? 1 : 0)};
   }
 `;
 

@@ -6,7 +6,7 @@ import { levels } from "../../../constants/level";
 import Tile from "./Tile";
 
 const TileMapPanel = () => {
-  const [currentLevel] = useState<LevelKeyType>("BEGINNER");
+  const [currentLevel] = useState<LevelKeyType>("Beginner");
   const tileMapArr = generateTileMap(levels[currentLevel].X, levels[currentLevel].Y);
   console.log(tileMapArr);
 
@@ -15,7 +15,7 @@ const TileMapPanel = () => {
       {tileMapArr.map((row, rowIndex) => (
         <RowWrapper key={rowIndex}>
           {row.map((item, colIndex) => (
-            <Tile rowIndex={rowIndex} colIndex={colIndex} key={item.id} item={item} />
+            <Tile rowIndex={rowIndex} colIndex={colIndex} key={`${rowIndex}&${colIndex}`} item={item} />
           ))}
         </RowWrapper>
       ))}

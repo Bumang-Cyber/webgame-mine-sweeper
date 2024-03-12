@@ -1,18 +1,24 @@
 export const levels = {
-  BEGINNER: {
+  Beginner: {
     TITLE: "Beginner",
     X: 8,
     Y: 8,
     MINE: 10,
   },
-  INTERMEDIATE: {
+  Intermediate: {
     TITLE: "Intermediate",
     X: 16,
     Y: 16,
     MINE: 40,
   },
-  EXPERT: {
+  Expert: {
     TITLE: "Expert",
+    X: 32,
+    Y: 16,
+    MINE: 100,
+  },
+  Custom: {
+    TITLE: "Custom",
     X: 32,
     Y: 16,
     MINE: 100,
