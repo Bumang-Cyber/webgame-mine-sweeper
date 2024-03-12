@@ -3,13 +3,15 @@ import { TileType } from "@/types/tile";
 import useTileSwitch from "@/hooks/useTileSwitch";
 
 interface TileProps {
+  tileMapArr: TileType[][];
+  onSetTileMap: React.Dispatch<React.SetStateAction<TileType[][]>>;
   rowIndex: number;
   colIndex: number;
   item: TileType;
 }
 
-const Tile = ({ item, rowIndex, colIndex }: TileProps) => {
-  const { tileClickHandler } = useTileSwitch(item);
+const Tile = ({ item, tileMapArr, onSetTileMap, rowIndex, colIndex }: TileProps) => {
+  const { tileClickHandler } = useTileSwitch({ item, tileMapArr, onSetTileMap, rowIndex, colIndex });
 
   return <TileContainer onClick={tileClickHandler}>{}</TileContainer>;
 };

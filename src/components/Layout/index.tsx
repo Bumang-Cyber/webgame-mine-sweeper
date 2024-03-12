@@ -1,3 +1,4 @@
+import usePlayingSwitch from "@/hooks/usePlayingSwitch";
 import styled from "styled-components";
 
 interface LayoutProps {
@@ -5,10 +6,12 @@ interface LayoutProps {
 }
 
 const Layout = ({ children }: LayoutProps) => {
-  // TODO: 전역상태를 이용하여 게임 오버, 게임 성공 상태 조건적 렌더
+  // TODO: 게임 상태 개발 끝나고 지우기
+  const { currentPlayingState } = usePlayingSwitch();
   return (
     <ScreenWrapper>
-      {/* TODO: 테이블 콘테이너 컴포넌트로 분리하기 */}
+      {/* */}
+      {currentPlayingState}
       <OuterContainer>
         {/* TODO: 게임 오버 & 성공 모달창 */}
         {children}
