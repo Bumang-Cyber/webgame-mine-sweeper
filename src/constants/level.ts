@@ -1,4 +1,33 @@
-export const levels = {
+import { LevelKeyType } from "./../types/level";
+
+interface LevelsProps {
+  Beginner: {
+    TITLE: LevelKeyType;
+    X: number;
+    Y: number;
+    MINE: number;
+  };
+  Intermediate: {
+    TITLE: LevelKeyType;
+    X: number;
+    Y: number;
+    MINE: number;
+  };
+  Expert: {
+    TITLE: LevelKeyType;
+    X: number;
+    Y: number;
+    MINE: number;
+  };
+  Custom: {
+    TITLE: LevelKeyType;
+    X: number;
+    Y: number;
+    MINE: number;
+  };
+}
+
+export const levels: LevelsProps = {
   Beginner: {
     TITLE: "Beginner",
     X: 8,

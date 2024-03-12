@@ -1,8 +1,8 @@
 import { TileType } from "../types/tile";
 
 const generateTileMap = (X: number, Y: number) => {
-  const arr = new Array(X).fill([]).map(() => {
-    return new Array(Y).fill(null).map(
+  const arr = new Array(Y).fill([]).map(() => {
+    return new Array(X).fill(null).map(
       () =>
         ({
           isOpened: false,

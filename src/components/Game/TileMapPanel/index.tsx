@@ -1,13 +1,15 @@
-import { useState } from "react";
 import styled from "styled-components";
-import { type LevelKeyType } from "../../../types/level";
 import generateTileMap from "../../../utils/generateTileMap";
-import { levels } from "../../../constants/level";
+
 import Tile from "./Tile";
+import useLevelSwitch from "../../../hooks/useLevelSwitch";
 
 const TileMapPanel = () => {
-  const [currentLevel] = useState<LevelKeyType>("Beginner");
-  const tileMapArr = generateTileMap(levels[currentLevel].X, levels[currentLevel].Y);
+  const { currentLevelStatus } = useLevelSwitch();
+  console.log(currentLevelStatus, "currentLevelStatus");
+  const { X, Y } = currentLevelStatus;
+
+  const tileMapArr = generateTileMap(X, Y);
   console.log(tileMapArr);
 
   return (

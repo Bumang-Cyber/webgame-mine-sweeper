@@ -24,17 +24,6 @@ const useLevelSwitch = () => {
       dispatchLevel(change(name));
     }
   };
-  // const xTileAmountByLevels = levelValues.map(({ X }) => ({ X }));
-  // const yTileAmountByLevels = levelValues.map(({ Y }) => ({ Y }));
-
-  // 최근 레벨
-  // 레벨들의 키
-  //
-  // 최근 레벨의 X타일 갯수
-  // 최근 레벨의 Y타일 갯수
-  // 최근 레벨의 지뢰 갯수
-  // dispatch (레벨 변환)
-  // LevelKeyType
 
   return { currentLevel, currentLevelStatus, levelSwitchHandler, levels, levelKeys, levelValues };
 };
