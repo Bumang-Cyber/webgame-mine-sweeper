@@ -8,6 +8,7 @@ const generateTileMap = (X: number, Y: number) => {
         ({
           isOpened: false,
           isMined: false,
+          isStaled: true,
           isFlagged: false,
           isQuestioned: false,
           mineNearby: 0,

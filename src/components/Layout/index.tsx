@@ -9,8 +9,7 @@ const Layout = ({ children }: LayoutProps) => {
   // TODO: 게임 상태 개발 끝나고 지우기
   const { currentPlayingState } = usePlayingSwitch();
   return (
-    <ScreenWrapper>
-      {/* */}
+    <ScreenWrapper onContextMenu={(e) => e.preventDefault()}>
       {currentPlayingState}
       <OuterContainer>
         {/* TODO: 게임 오버 & 성공 모달창 */}
@@ -38,4 +37,7 @@ export const OuterContainer = styled.main`
   padding-top: 0;
   background-color: ${({ theme }) => theme.color.lightGray100};
   border-radius: 8px;
+
+  position: relative;
+  z-index: 1;
 `;

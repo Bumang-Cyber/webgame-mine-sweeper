@@ -2,6 +2,12 @@ import styled from "styled-components";
 import { TileType } from "@/types/tile";
 import useTileSwitch from "@/hooks/useTileSwitch";
 
+// icon
+import { BiSolidBomb as BombIcon } from "react-icons/bi";
+import { FaExplosion as BoomIcon } from "react-icons/fa6";
+import { FaFlag as FlagIcon } from "react-icons/fa6";
+import { FaQuestion as QuestionIcon } from "react-icons/fa";
+
 interface TileProps {
   tileMapArr: TileType[][];
   onSetTileMap: React.Dispatch<React.SetStateAction<TileType[][]>>;
@@ -11,9 +17,16 @@ interface TileProps {
 }
 
 const Tile = ({ item, tileMapArr, onSetTileMap, rowIndex, colIndex }: TileProps) => {
-  const { tileClickHandler } = useTileSwitch({ item, tileMapArr, onSetTileMap, rowIndex, colIndex });
+  const { tileLeftClickHandler, tileRightClickHandler } = useTileSwitch({ item, tileMapArr, onSetTileMap, rowIndex, colIndex });
+  const { isFlagged, isMined, isOpened, isQuestioned } = item;
 
-  return <TileContainer onClick={tileClickHandler}>{}</TileContainer>;
+  return (
+    <TileContainer onClick={tileLeftClickHandler} onContextMenu={tileRightClickHandler}>
+      {isFlagged && <FlagIcon />}
+      {isQuestioned && <QuestionIcon />}
+      {isMined && isOpened && <BombIcon />}
+    </TileContainer>
+  );
 };
 
 export default Tile;
@@ -22,7 +35,7 @@ export const TileContainer = styled.td`
   width: 16px;
   height: 16px;
   background-color: ${({ theme }) => theme.color.lightGray100};
-  font-size: 4px;
+  font-size: 12px;
 
   display: flex;
   justify-content: center;
