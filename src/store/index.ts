@@ -1,11 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import levelSlice from "./levelSlice";
 import playingStateSlice from "./playingStateSlice";
+import goalAmountSlice from "./goalAmountSlice";
 
 const store = configureStore({
   reducer: {
     levels: levelSlice.reducer,
     playing: playingStateSlice.reducer,
+    goalAmount: goalAmountSlice.reducer,
   },
 });
 

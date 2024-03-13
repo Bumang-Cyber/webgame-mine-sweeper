@@ -1,3 +1,4 @@
+import useGoalStatus from "@/hooks/useGoalStatus";
 import usePlayingSwitch from "@/hooks/usePlayingSwitch";
 import styled from "styled-components";
 
@@ -6,11 +7,12 @@ interface LayoutProps {
 }
 
 const Layout = ({ children }: LayoutProps) => {
-  // TODO: 게임 상태 개발 끝나고 지우기
   const { currentPlayingState } = usePlayingSwitch();
+  const { currentGoalAmount } = useGoalStatus();
   return (
     <ScreenWrapper onContextMenu={(e) => e.preventDefault()}>
-      {currentPlayingState}
+      <div>currentPlayingState: {currentPlayingState}</div>
+      <div>currentGoalAmount: {currentGoalAmount}</div>
       <OuterContainer>
         {/* TODO: 게임 오버 & 성공 모달창 */}
         {children}

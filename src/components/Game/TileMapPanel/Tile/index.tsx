@@ -28,7 +28,15 @@ const Tile = ({ item, tileMapArr, onSetTileMap, rowIndex, colIndex }: TileProps)
   if (currentPlayingState === "gameOver" && isMined) {
     return (
       <TileContainer $color={tileColor} $isOpened={isOpened} onClick={tileLeftClickHandler} onContextMenu={tileRightClickHandler}>
-        {<BombIcon className="icon" />}
+        <BombIcon className="icon" />
+      </TileContainer>
+    );
+  }
+
+  if (currentPlayingState === "success" && isMined) {
+    return (
+      <TileContainer $color={tileColor} $isOpened={isOpened} onClick={tileLeftClickHandler} onContextMenu={tileRightClickHandler}>
+        <FlagIcon className="icon" />
       </TileContainer>
     );
   }

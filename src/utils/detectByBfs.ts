@@ -12,6 +12,7 @@ const detectByBfs = (Y: number, X: number, tileMapArr: TileType[][]) => {
 
     // DO SOMETHING WITH cur
     const [curY, curX] = cur;
+
     tileMapArr[curY][curX].isOpened = true;
     if (tileMapArr[curY][curX].mineNearby > 0) return;
 

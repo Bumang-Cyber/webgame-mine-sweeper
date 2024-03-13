@@ -18,6 +18,7 @@ const useTileSwitch = ({ item, tileMapArr, onSetTileMap, rowIndex, colIndex }: u
   const { currentPlayingState, playingSwitchHandler } = usePlayingSwitch();
   const { GenRandomMineHandler } = useIntializeGame({ tileMapArr, colIndex, rowIndex, onSetTileMap });
 
+  // 왼쪽 클릭
   const tileLeftClickHandler = (e: React.MouseEvent) => {
     e.preventDefault();
 
@@ -40,26 +41,18 @@ const useTileSwitch = ({ item, tileMapArr, onSetTileMap, rowIndex, colIndex }: u
     const copy = [...tileMapArr];
 
     // 지뢰를 밟았을 때
-    // - isMined: true인가? => gameOver로 만들기, 지뢰 보이기
     if (isMined) {
       playingSwitchHandler("gameOver");
       copy[rowIndex][colIndex].isOpened = true;
       onSetTileMap(copy);
-      // 지뢰 모두 보이기 (지뢰 인덱스 모두 캐싱해놓기)
-      // ...
       return;
     }
 
     detectByBfs(rowIndex, colIndex, tileMapArr);
-
     onSetTileMap(copy);
   };
 
-  /* 
-
-    오른쪽 클릭
-  
-  */
+  // 오른쪽 클릭
   const tileRightClickHandler = (e: React.MouseEvent) => {
     e.preventDefault();
 

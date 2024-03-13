@@ -1,24 +1,14 @@
 import styled from "styled-components";
-import { useMemo, useState } from "react";
-
-import generateTileMap from "@utils/generateTileMap";
 import Tile from "./Tile";
 
-import useLevelSwitch from "@hooks/useLevelSwitch";
-import usePlayingSwitch from "@/hooks/usePlayingSwitch";
+import useTileStatus from "@/hooks/useTileStatus";
+import useGoalStatus from "@/hooks/useGoalStatus";
+import useGoalSwitch from "@/hooks/useGoalSwitch";
 
 const TileMapPanel = () => {
-  const { currentLevelStatus, currentLevel } = useLevelSwitch();
-  const { currentPlayingState } = usePlayingSwitch();
-  const { X, Y } = currentLevelStatus;
-
-  // TODO: 이 배열을 state화 하기
-  const [tileMapArr, setTileMapArr] = useState(generateTileMap(X, Y));
-
-  useMemo(() => {
-    if (currentPlayingState !== "stale") return;
-    setTileMapArr(generateTileMap(X, Y));
-  }, [currentLevel, currentPlayingState]);
+  const { tileMapArr, setTileMapArr } = useTileStatus();
+  useGoalStatus(tileMapArr);
+  useGoalSwitch();
 
   return (
     <TileMapContainer>
