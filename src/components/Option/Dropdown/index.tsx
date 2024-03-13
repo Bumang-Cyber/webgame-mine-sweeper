@@ -28,7 +28,12 @@ const Dropdown = () => {
         </MenuItem>
         <Divider />
         {levelKeys.map((name) => (
-          <MenuItem onClick={() => levelSwitchHandler(name)} key={name} $cur={name} $name={currentLevel}>
+          <MenuItem //
+            onClick={() => levelSwitchHandler(name)}
+            key={name}
+            $cur={name}
+            $name={currentLevel}
+          >
             <FaCheck className="icon" />
             {name}
           </MenuItem>

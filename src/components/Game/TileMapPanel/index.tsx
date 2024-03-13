@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import generateTileMap from "@utils/generateTileMap";
 import Tile from "./Tile";
@@ -8,19 +8,17 @@ import useLevelSwitch from "@hooks/useLevelSwitch";
 import usePlayingSwitch from "@/hooks/usePlayingSwitch";
 
 const TileMapPanel = () => {
-  const { currentLevelStatus, levelValues } = useLevelSwitch();
+  const { currentLevelStatus, currentLevel } = useLevelSwitch();
   const { currentPlayingState } = usePlayingSwitch();
   const { X, Y } = currentLevelStatus;
-  console.log(levelValues);
 
   // TODO: 이 배열을 state화 하기
   const [tileMapArr, setTileMapArr] = useState(generateTileMap(X, Y));
 
-  useEffect(() => {
-    if (currentPlayingState === "stale") {
-      setTileMapArr(generateTileMap(X, Y));
-    }
-  }, [currentPlayingState]);
+  useMemo(() => {
+    if (currentPlayingState !== "stale") return;
+    setTileMapArr(generateTileMap(X, Y));
+  }, [currentLevel, currentPlayingState]);
 
   return (
     <TileMapContainer>

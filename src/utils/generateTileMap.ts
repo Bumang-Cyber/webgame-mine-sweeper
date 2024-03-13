@@ -1,7 +1,6 @@
 import { TileType } from "@/types/tile";
 
 const generateTileMap = (X: number, Y: number) => {
-  // TODO: 마인 심기
   const arr = new Array(Y).fill([]).map(() => {
     return new Array(X).fill(null).map(
       () =>

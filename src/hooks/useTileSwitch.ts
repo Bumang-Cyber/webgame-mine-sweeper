@@ -1,6 +1,7 @@
 import { TileType } from "@/types/tile";
 import usePlayingSwitch from "./usePlayingSwitch";
 import useIntializeGame from "@/hooks/useIntializeGame";
+import detectByBfs from "@/utils/detectByBfs";
 
 interface useTileSwitchProps {
   item: TileType;
@@ -11,7 +12,7 @@ interface useTileSwitchProps {
 }
 
 const useTileSwitch = ({ item, tileMapArr, onSetTileMap, rowIndex, colIndex }: useTileSwitchProps) => {
-  const { isFlagged, isMined, isOpened, isQuestioned, isStaled } = item;
+  const { isFlagged, isMined, isOpened, isQuestioned, isStaled, mineNearby } = item;
 
   const { currentPlayingState, playingSwitchHandler } = usePlayingSwitch();
   const { GenRandomMineHandler } = useIntializeGame({ tileMapArr, colIndex, rowIndex, onSetTileMap });
@@ -32,7 +33,7 @@ const useTileSwitch = ({ item, tileMapArr, onSetTileMap, rowIndex, colIndex }: u
     // stale이면 게임스타트
     if (currentPlayingState === "stale") {
       playingSwitchHandler("playing");
-      const a = GenRandomMineHandler();
+      GenRandomMineHandler();
     }
 
     const copy = [...tileMapArr];
@@ -41,14 +42,12 @@ const useTileSwitch = ({ item, tileMapArr, onSetTileMap, rowIndex, colIndex }: u
     // - isMined: true인가? => gameOver로 만들기, 지뢰 보이기
     if (isMined) {
       playingSwitchHandler("gameOver");
+      // 지뢰 모두 보이기 (지뢰 인덱스 모두 캐싱해놓기)
       // ...
       return;
     }
 
-    // - bfsMineSearch(tileMapArr, colIndex, rowIndex)
-    // - - tileMapArr.slice해서 이걸로 bfs 수행하기
-    // - - isOpened로 만들기
-    // copy[colIndex][rowIndex].isOpened = true;
+    detectByBfs(rowIndex, colIndex, tileMapArr);
 
     onSetTileMap(copy);
   };
