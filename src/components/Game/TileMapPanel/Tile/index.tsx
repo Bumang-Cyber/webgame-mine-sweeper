@@ -50,6 +50,7 @@ const Tile = ({ item, tileMapArr, onSetTileMap, rowIndex, colIndex }: TileProps)
   }
 
   if (isQuestioned) {
+    console.log(isFlagged, isMined, isOpened, isQuestioned, mineNearby, "?ITEM");
     return (
       <TileContainer $color={tileColor} $isOpened={isOpened} onClick={tileLeftClickHandler} onContextMenu={tileRightClickHandler}>
         <QuestionIcon className="icon" />

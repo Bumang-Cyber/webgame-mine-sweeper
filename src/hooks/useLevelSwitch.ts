@@ -4,9 +4,10 @@ import { change } from "@store/levelSlice";
 import { type RootState } from "@store/index";
 import { type LevelKeyType, type LevelValueType } from "@/types/level";
 import { levels } from "@/constants/level";
+import usePlayingSwitch from "./usePlayingSwitch";
 
 const useLevelSwitch = () => {
-  // useLevelSwitch 훅으로 정리하기 (커스텀 레벨까지)
+  const { playingSwitchHandler } = usePlayingSwitch();
   const dispatchLevel = useDispatch();
   const currentLevel = useSelector((state: RootState) => {
     return state.levels.value;
@@ -17,11 +18,14 @@ const useLevelSwitch = () => {
 
   const currentLevelStatus = levelValues.find(({ Y, TITLE }) => TITLE === currentLevel && Y)!;
 
-  const levelSwitchHandler = (name: LevelKeyType) => {
-    if (name === "Custom") {
+  const levelSwitchHandler = (level: LevelKeyType) => {
+    if (level === "Custom") {
+      // 커스텀 훅 정리하기
+      // useLevelSwitch 훅으로 정리하기 (커스텀 레벨까지)
       return;
     } else {
-      dispatchLevel(change(name));
+      playingSwitchHandler("stale");
+      dispatchLevel(change(level));
     }
   };
 

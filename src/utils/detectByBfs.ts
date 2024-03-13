@@ -5,6 +5,7 @@ import { Queue } from "./queue";
 const detectByBfs = (Y: number, X: number, tileMapArr: TileType[][]) => {
   const queue = new Queue();
 
+  tileMapArr[Y][X].isQuestioned = false;
   queue.enqueue([Y, X]);
   while (queue.getLength() !== 0) {
     const cur = queue.dequeue();

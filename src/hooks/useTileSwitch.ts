@@ -48,7 +48,7 @@ const useTileSwitch = ({ item, tileMapArr, onSetTileMap, rowIndex, colIndex }: u
       return;
     }
 
-    detectByBfs(rowIndex, colIndex, tileMapArr);
+    detectByBfs(rowIndex, colIndex, copy);
     onSetTileMap(copy);
   };
 
