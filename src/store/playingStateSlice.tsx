@@ -9,7 +9,7 @@ const initialState: InitialState = {
   value: "stale",
 };
 
-const playingSlice = createSlice({
+const playingStateSlice = createSlice({
   name: "playing",
   initialState,
   reducers: {
@@ -19,5 +19,5 @@ const playingSlice = createSlice({
   },
 });
 
-export default playingSlice;
-export const { change } = playingSlice.actions;
+export default playingStateSlice;
+export const { change } = playingStateSlice.actions;

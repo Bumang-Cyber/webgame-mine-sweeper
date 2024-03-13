@@ -1,6 +1,6 @@
 import { RootState } from "./../store/index";
 import { useDispatch, useSelector } from "react-redux";
-import { change } from "@/store/playingSlice";
+import { change } from "@/store/playingStateSlice";
 import { playingType } from "@/types/playing";
 
 const usePlayingSwitch = () => {

@@ -19,6 +19,7 @@ export default StatusPanel;
 
 const StatusPanelContainer = styled.thead`
   width: 100%;
+  height: 30px;
 
   ${({ theme }) => theme.borderInset}
 `;

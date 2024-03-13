@@ -8,6 +8,7 @@ export default TimerPanel;
 
 const TimerContainer = styled.td`
   width: 36px;
+  height: 24px;
   font-family: "digital";
 
   display: flex;

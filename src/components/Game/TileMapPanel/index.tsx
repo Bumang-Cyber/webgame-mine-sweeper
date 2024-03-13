@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 
 import generateTileMap from "@utils/generateTileMap";
 import Tile from "./Tile";

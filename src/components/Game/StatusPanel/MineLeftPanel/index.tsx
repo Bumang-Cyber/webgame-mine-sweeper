@@ -8,6 +8,7 @@ export default MineLeftPanel;
 
 const MineLeftContainer = styled.td`
   width: 36px;
+  height: 24px;
   font-family: "digital";
 
   display: flex;

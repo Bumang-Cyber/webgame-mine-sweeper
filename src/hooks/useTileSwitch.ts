@@ -12,7 +12,8 @@ interface useTileSwitchProps {
 }
 
 const useTileSwitch = ({ item, tileMapArr, onSetTileMap, rowIndex, colIndex }: useTileSwitchProps) => {
-  const { isFlagged, isMined, isOpened, isQuestioned, isStaled, mineNearby } = item;
+  const { isFlagged, isMined, isQuestioned, isStaled } = item;
+  const { isOpened } = item;
 
   const { currentPlayingState, playingSwitchHandler } = usePlayingSwitch();
   const { GenRandomMineHandler } = useIntializeGame({ tileMapArr, colIndex, rowIndex, onSetTileMap });
@@ -42,6 +43,8 @@ const useTileSwitch = ({ item, tileMapArr, onSetTileMap, rowIndex, colIndex }: u
     // - isMined: true인가? => gameOver로 만들기, 지뢰 보이기
     if (isMined) {
       playingSwitchHandler("gameOver");
+      copy[rowIndex][colIndex].isOpened = true;
+      onSetTileMap(copy);
       // 지뢰 모두 보이기 (지뢰 인덱스 모두 캐싱해놓기)
       // ...
       return;

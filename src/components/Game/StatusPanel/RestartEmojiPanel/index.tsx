@@ -8,7 +8,14 @@ const RestartEmojiPanel = () => {
     playingSwitchHandler("stale");
   };
 
-  return <RestartEmojiContainer onClick={clickEmojiHander}>🙂</RestartEmojiContainer>;
+  return (
+    <RestartEmojiContainer onClick={clickEmojiHander}>
+      {currentPlayingState === "stale" && "🙂"}
+      {currentPlayingState === "playing" && "😀"}
+      {currentPlayingState === "gameOver" && "🤯"}
+      {currentPlayingState === "success" && "😎"}
+    </RestartEmojiContainer>
+  );
 };
 
 export default RestartEmojiPanel;
