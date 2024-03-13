@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { change } from "@store/levelSlice";
 
 import { type RootState } from "@store/index";
-import { type LevelKeyType } from "@/types/level";
+import { type LevelKeyType, type LevelValueType } from "@/types/level";
 import { levels } from "@/constants/level";
 
 const useLevelSwitch = () => {
@@ -13,9 +13,9 @@ const useLevelSwitch = () => {
   });
 
   const levelKeys: LevelKeyType[] = ["Beginner", "Intermediate", "Expert", "Custom"];
-  const levelValues = Object.values(levels);
+  const levelValues: LevelValueType[] = Object.values(levels);
 
-  const currentLevelStatus = levelValues.find(({ Y, TITLE }) => TITLE === currentLevel && Y);
+  const currentLevelStatus = levelValues.find(({ Y, TITLE }) => TITLE === currentLevel && Y)!;
 
   const levelSwitchHandler = (name: LevelKeyType) => {
     if (name === "Custom") {

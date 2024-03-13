@@ -1,33 +1,6 @@
-import { LevelKeyType } from "@/types/level";
+import { type LevelValueType } from "@/types/level";
 
-interface LevelsProps {
-  Beginner: {
-    TITLE: LevelKeyType;
-    X: number;
-    Y: number;
-    MINE: number;
-  };
-  Intermediate: {
-    TITLE: LevelKeyType;
-    X: number;
-    Y: number;
-    MINE: number;
-  };
-  Expert: {
-    TITLE: LevelKeyType;
-    X: number;
-    Y: number;
-    MINE: number;
-  };
-  Custom: {
-    TITLE: LevelKeyType;
-    X: number;
-    Y: number;
-    MINE: number;
-  };
-}
-
-export const levels: LevelsProps = {
+export const levels: { [key: string]: LevelValueType } = {
   Beginner: {
     TITLE: "Beginner",
     X: 8,

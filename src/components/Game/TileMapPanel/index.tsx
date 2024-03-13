@@ -8,9 +8,10 @@ import useLevelSwitch from "@hooks/useLevelSwitch";
 import usePlayingSwitch from "@/hooks/usePlayingSwitch";
 
 const TileMapPanel = () => {
-  const { currentLevelStatus } = useLevelSwitch();
+  const { currentLevelStatus, levelValues } = useLevelSwitch();
   const { currentPlayingState } = usePlayingSwitch();
   const { X, Y } = currentLevelStatus;
+  console.log(levelValues);
 
   // TODO: 이 배열을 state화 하기
   const [tileMapArr, setTileMapArr] = useState(generateTileMap(X, Y));

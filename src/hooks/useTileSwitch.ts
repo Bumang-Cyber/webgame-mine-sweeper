@@ -1,6 +1,6 @@
 import { TileType } from "@/types/tile";
-import { useDispatch, useSelector } from "react-redux";
 import usePlayingSwitch from "./usePlayingSwitch";
+import useIntializeGame from "@/hooks/useIntializeGame";
 
 interface useTileSwitchProps {
   item: TileType;
@@ -11,10 +11,10 @@ interface useTileSwitchProps {
 }
 
 const useTileSwitch = ({ item, tileMapArr, onSetTileMap, rowIndex, colIndex }: useTileSwitchProps) => {
-  const dispatch = useDispatch();
   const { isFlagged, isMined, isOpened, isQuestioned, isStaled } = item;
 
   const { currentPlayingState, playingSwitchHandler } = usePlayingSwitch();
+  const { GenRandomMineHandler } = useIntializeGame({ tileMapArr, colIndex, rowIndex, onSetTileMap });
 
   const tileLeftClickHandler = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -32,6 +32,7 @@ const useTileSwitch = ({ item, tileMapArr, onSetTileMap, rowIndex, colIndex }: u
     // stale이면 게임스타트
     if (currentPlayingState === "stale") {
       playingSwitchHandler("playing");
+      const a = GenRandomMineHandler();
     }
 
     const copy = [...tileMapArr];
@@ -52,7 +53,11 @@ const useTileSwitch = ({ item, tileMapArr, onSetTileMap, rowIndex, colIndex }: u
     onSetTileMap(copy);
   };
 
-  // 오른쪽 클릭
+  /* 
+
+    오른쪽 클릭
+  
+  */
   const tileRightClickHandler = (e: React.MouseEvent) => {
     e.preventDefault();
 

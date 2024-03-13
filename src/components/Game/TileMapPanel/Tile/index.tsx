@@ -18,13 +18,15 @@ interface TileProps {
 
 const Tile = ({ item, tileMapArr, onSetTileMap, rowIndex, colIndex }: TileProps) => {
   const { tileLeftClickHandler, tileRightClickHandler } = useTileSwitch({ item, tileMapArr, onSetTileMap, rowIndex, colIndex });
-  const { isFlagged, isMined, isOpened, isQuestioned } = item;
+  const { isFlagged, isMined, isOpened, isQuestioned, mineNearby } = item;
 
   return (
     <TileContainer onClick={tileLeftClickHandler} onContextMenu={tileRightClickHandler}>
       {isFlagged && <FlagIcon />}
       {isQuestioned && <QuestionIcon />}
-      {isMined && isOpened && <BombIcon />}
+      {/* {isMined && isOpened && <BombIcon />} */}
+      {isMined && <BombIcon />}
+      {!isMined && mineNearby}
     </TileContainer>
   );
 };
@@ -34,7 +36,7 @@ export default Tile;
 export const TileContainer = styled.td`
   width: 16px;
   height: 16px;
-  background-color: ${({ theme }) => theme.color.lightGray100};
+  background-color: ${({ theme }) => theme.color.lightGray200};
   font-size: 12px;
 
   display: flex;

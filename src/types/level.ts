@@ -1,3 +1,8 @@
-import { levels } from "../constants/level";
+export type LevelKeyType = "Beginner" | "Intermediate" | "Expert" | "Custom";
 
-export type LevelKeyType = keyof typeof levels;
+export interface LevelValueType {
+  TITLE: LevelKeyType;
+  X: number;
+  Y: number;
+  MINE: number;
+}
