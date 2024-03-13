@@ -1,7 +1,10 @@
+import useTimer from "@/hooks/useTimer";
 import styled from "styled-components";
 
 const TimerPanel = () => {
-  return <TimerContainer>555</TimerContainer>;
+  const { paddedTime } = useTimer();
+
+  return <TimerContainer>{paddedTime}</TimerContainer>;
 };
 
 export default TimerPanel;
