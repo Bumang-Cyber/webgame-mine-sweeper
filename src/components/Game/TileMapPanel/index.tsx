@@ -2,12 +2,12 @@ import styled from "styled-components";
 import Tile from "./Tile";
 
 import useTileStatus from "@/hooks/useTileStatus";
-import useGoalStatus from "@/hooks/useGoalStatus";
+import useCountTileMap from "@/hooks/useCountTileMap";
 import useGoalSwitch from "@/hooks/useGoalSwitch";
 
 const TileMapPanel = () => {
   const { tileMapArr, setTileMapArr } = useTileStatus();
-  useGoalStatus(tileMapArr);
+  useCountTileMap(tileMapArr);
   useGoalSwitch();
 
   return (

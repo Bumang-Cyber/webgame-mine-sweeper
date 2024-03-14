@@ -1,7 +1,9 @@
+import useMineLeft from "@/hooks/useMineLeft";
 import styled from "styled-components";
 
 const MineLeftPanel = () => {
-  return <MineLeftContainer>050</MineLeftContainer>;
+  const { paddedMindLeft } = useMineLeft();
+  return <MineLeftContainer>{paddedMindLeft}</MineLeftContainer>;
 };
 
 export default MineLeftPanel;

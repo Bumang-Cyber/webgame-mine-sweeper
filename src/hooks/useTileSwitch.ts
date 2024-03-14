@@ -60,6 +60,7 @@ const useTileSwitch = ({ item, tileMapArr, onSetTileMap, rowIndex, colIndex }: u
     if (
       currentPlayingState === "gameOver" || //
       currentPlayingState === "success" ||
+      currentPlayingState === "stale" ||
       isOpened
     ) {
       return;

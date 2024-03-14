@@ -4,14 +4,16 @@ import { setGoalAmountTiles } from "@/store/goalAmountSlice";
 import { useEffect } from "react";
 import { TileType } from "@/types/tile";
 import usePlayingSwitch from "./usePlayingSwitch";
+import useMineLeft from "./useMineLeft";
 
-const useGoalStatus = (tileMapArr?: TileType[][]) => {
+const useCountTileMap = (tileMapArr?: TileType[][]) => {
   const { playingSwitchHandler, currentPlayingState } = usePlayingSwitch();
   // 목표 타일 갯수 전역 관리
   const dispatchGoalAmount = useDispatch();
   const currentGoalAmount = useSelector((state: RootState) => {
     return state.goalAmount.value;
   });
+  const { mineLeftHandler } = useMineLeft();
 
   // 목표 타일 갯수 설정 핸들러
   const setGoalToSucceed = (mines: number, X: number, Y: number) => {
@@ -23,19 +25,22 @@ const useGoalStatus = (tileMapArr?: TileType[][]) => {
     if (!tileMapArr) return;
     if (currentPlayingState !== "playing") return;
     let openedAmount = 0;
+    let flaggedAmount = 0;
     tileMapArr.forEach((row) => {
       row.forEach((cell) => {
         if (cell.isOpened) {
           openedAmount++;
         }
+        if (cell.isFlagged) {
+          flaggedAmount++;
+        }
       });
     });
 
-    console.log("openedAmount: ", openedAmount);
-    console.log(openedAmount, currentGoalAmount);
     if (openedAmount === currentGoalAmount) {
       playingSwitchHandler("success");
     }
+    mineLeftHandler(flaggedAmount);
 
     // eslint-disable-next-line
   }, [tileMapArr]);
@@ -43,4 +48,4 @@ const useGoalStatus = (tileMapArr?: TileType[][]) => {
   return { currentGoalAmount, setGoalToSucceed };
 };
 
-export default useGoalStatus;
+export default useCountTileMap;

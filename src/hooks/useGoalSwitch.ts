@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import useLevelSwitch from "./useLevelSwitch";
-import useGoalStatus from "./useGoalStatus";
+import useGoalStatus from "./useCountTileMap";
 
 const useGoalSwitch = () => {
   const { currentLevel, currentLevelStatus } = useLevelSwitch();

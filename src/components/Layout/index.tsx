@@ -1,4 +1,4 @@
-import useGoalStatus from "@/hooks/useGoalStatus";
+import useGoalStatus from "@/hooks/useCountTileMap";
 import usePlayingSwitch from "@/hooks/usePlayingSwitch";
 import styled from "styled-components";
 
