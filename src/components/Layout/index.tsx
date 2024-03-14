@@ -1,6 +1,9 @@
 import useGoalStatus from "@/hooks/useCountTileMap";
 import usePlayingSwitch from "@/hooks/usePlayingSwitch";
 import styled from "styled-components";
+import Modal from "../Modal";
+import Content from "@/components/Modal/Contents";
+import useModal from "@/hooks/useModal";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -9,12 +12,17 @@ interface LayoutProps {
 const Layout = ({ children }: LayoutProps) => {
   const { currentPlayingState } = usePlayingSwitch();
   const { currentGoalAmount } = useGoalStatus();
+  const { currentModal, modalChangeHandler } = useModal();
+
   return (
     <ScreenWrapper onContextMenu={(e) => e.preventDefault()}>
       <div>currentPlayingState: {currentPlayingState}</div>
       <div>currentGoalAmount: {currentGoalAmount}</div>
+      <div>currentModal: {currentModal}</div>
+      <button onClick={() => modalChangeHandler("Success")}>성공버튼</button>
+      <button onClick={() => modalChangeHandler("PersonalBest")}>퍼스널베스트 버튼</button>
       <OuterContainer>
-        {/* TODO: 게임 오버 & 성공 모달창 */}
+        <Modal>{currentModal !== "None" && <Content type={currentModal} />}</Modal>
         {children}
       </OuterContainer>
     </ScreenWrapper>

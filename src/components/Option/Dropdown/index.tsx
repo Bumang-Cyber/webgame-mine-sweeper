@@ -4,9 +4,11 @@ import styled from "styled-components";
 import { type LevelKeyType } from "@/types/level";
 import { FaCheck } from "react-icons/fa";
 import useLevelSwitch from "@hooks/useLevelSwitch";
+import useModal from "@/hooks/useModal";
 
 const Dropdown = () => {
   const { currentLevel, levelSwitchHandler, levelKeys } = useLevelSwitch();
+  const { modalChangeHandler } = useModal();
 
   const [isVisible, setIsVisible] = useState(false);
 
@@ -39,7 +41,7 @@ const Dropdown = () => {
           </MenuItem>
         ))}
         <Divider />
-        <MenuItem>
+        <MenuItem onClick={() => modalChangeHandler("Custom")}>
           <FaCheck className="icon" />
           Personal Best
         </MenuItem>

@@ -2,13 +2,6 @@ import { useEffect, useState } from "react";
 import useLevelSwitch from "./useLevelSwitch";
 import usePlayingSwitch from "./usePlayingSwitch";
 
-// interface highscoreProps {
-//   Beginner : number;
-//   Intermediate : number;
-//   Expert : number;
-//   Custom : number;
-// }
-
 const useTimer = () => {
   const { currentLevel } = useLevelSwitch();
   const { currentPlayingState } = usePlayingSwitch();
@@ -21,17 +14,23 @@ const useTimer = () => {
       return;
     } else if (currentPlayingState === "success") {
       const highscore = localStorage.getItem("highscore");
+      console.log(highscore, "hs");
       if (highscore) {
+        console.log("in true");
         const parsed = JSON.parse(highscore);
-        parsed[currentLevel] = Math.min(time, parsed[currentLevel]);
-        console.log(parsed, "parsed");
+        if (parsed[currentLevel] === null) {
+          parsed[currentLevel] = time;
+        } else {
+          parsed[currentLevel] = Math.min(time, parsed[currentLevel]);
+        }
+
         localStorage.setItem("highscore", JSON.stringify(parsed));
       } else {
-        const temp = {
-          Beginner: 0,
-          Intermediate: 0,
-          Expert: 0,
-          Custom: 0,
+        const temp: { [key: string]: null | number } = {
+          Beginner: null,
+          Intermediate: null,
+          Expert: null,
+          Custom: null,
         };
         temp[currentLevel] = time;
         localStorage.setItem("highscore", JSON.stringify(temp));

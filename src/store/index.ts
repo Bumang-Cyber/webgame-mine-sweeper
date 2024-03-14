@@ -3,6 +3,7 @@ import levelSlice from "./levelSlice";
 import playingStateSlice from "./playingStateSlice";
 import goalAmountSlice from "./goalAmountSlice";
 import mineLeftSlice from "./mineLeftSlice";
+import modalSlice from "./modalSlice";
 
 const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ const store = configureStore({
     playing: playingStateSlice.reducer,
     goalAmount: goalAmountSlice.reducer,
     mineLeft: mineLeftSlice.reducer,
+    modal: modalSlice.reducer,
   },
 });
 
