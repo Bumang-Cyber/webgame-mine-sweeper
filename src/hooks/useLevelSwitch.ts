@@ -17,6 +17,7 @@ const useLevelSwitch = () => {
   const levelKeys: LevelKeyType[] = ["Beginner", "Intermediate", "Expert", "Custom"];
 
   const levelSwitchHandler = (level: LevelValueType) => {
+    localStorage.setItem("level", JSON.stringify(level));
     playingSwitchHandler("stale");
     if (level.TITLE === "Custom") {
       modalChangeHandler("Custom");

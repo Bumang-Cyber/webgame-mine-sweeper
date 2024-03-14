@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import useLevelSwitch from "./useLevelSwitch";
 import usePlayingSwitch from "./usePlayingSwitch";
+import setScore from "@/utils/setScore";
 
 const useTimer = () => {
   const { currentLevel } = useLevelSwitch();
   const { currentPlayingState } = usePlayingSwitch();
+  const { TITLE } = currentLevel;
 
   const [time, setTime] = useState(0);
 
@@ -14,28 +16,8 @@ const useTimer = () => {
       return;
     } else if (currentPlayingState === "success") {
       const highscore = localStorage.getItem("highscore");
-      console.log(highscore, "hs");
-      if (highscore) {
-        console.log("in true");
-        const parsed = JSON.parse(highscore);
-        if (parsed[currentLevel] === null) {
-          parsed[currentLevel] = time;
-        } else {
-          parsed[currentLevel] = Math.min(time, parsed[currentLevel]);
-        }
-
-        localStorage.setItem("highscore", JSON.stringify(parsed));
-      } else {
-        const temp: { [key: string]: null | number } = {
-          Beginner: null,
-          Intermediate: null,
-          Expert: null,
-          Custom: null,
-        };
-        temp[currentLevel] = time;
-        localStorage.setItem("highscore", JSON.stringify(temp));
-      }
-
+      console.log(time, "time");
+      setScore(TITLE, time, highscore);
       return;
     } else if (currentPlayingState === "gameOver") {
       return;

@@ -11,10 +11,13 @@ const Success = () => {
   const closeHandler = () => modalChangeHandler("None");
 
   const highScore = localStorage.getItem("highscore");
-  let parsed = highScore ? JSON.parse(highScore) : "";
-  if (parsed) {
-    parsed = parsed[TITLE];
+  let parsedHighscore = highScore ? JSON.parse(highScore) : "";
+  if (parsedHighscore) {
+    parsedHighscore = parsedHighscore[TITLE];
   }
+
+  const currentTime = localStorage.getItem("currentTime");
+  const parsedCurtime = currentTime ? JSON.parse(currentTime) : "";
 
   return (
     <ModalContainer>
@@ -28,7 +31,9 @@ const Success = () => {
         <h3>GameLevel</h3>
         <h4>{TITLE}</h4>
         <h3>GameTime</h3>
-        <h4> | my Best: {parsed} s</h4>
+        <h4>
+          time: {parsedCurtime} s | my Best: {parsedHighscore} s
+        </h4>
         <h3>GameMapSize</h3>
         <h4>
           width {X} x height {Y}
