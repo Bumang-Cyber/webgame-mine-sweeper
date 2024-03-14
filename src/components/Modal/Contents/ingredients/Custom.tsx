@@ -2,37 +2,34 @@ import { CgClose } from "react-icons/cg";
 import useModal from "@/hooks/useModal";
 import styled from "styled-components";
 import useLevelSwitch from "@/hooks/useLevelSwitch";
+import useCustomSetting from "@/hooks/useCustomSetting";
 
 const Custom = () => {
-  const { currentLevelStatus } = useLevelSwitch();
-  const { X, Y, TITLE } = currentLevelStatus;
+  const { levelSwitchHandler } = useLevelSwitch();
   const { modalChangeHandler } = useModal();
+  const { height, width, mineAmount, validateHeight, validateWidth, validateMine, submitHandler } = useCustomSetting();
 
-  const closeHandler = () => modalChangeHandler("None");
-
-  const highScore = localStorage.getItem("highscore");
-  let parsed = highScore ? JSON.parse(highScore) : "";
-  if (parsed) {
-    parsed = parsed[TITLE];
-  }
+  const closeHandler = () => {
+    const validate = submitHandler();
+    if (!validate) return;
+    modalChangeHandler("None");
+  };
 
   return (
     <ModalContainer>
       <Header>
-        <h1>Congraturation!</h1>
+        <h1>Custom Setting</h1>
         <button>
           <CgClose onClick={closeHandler} className="close-icon" />
         </button>
       </Header>
       <Body>
-        <h3>GameLevel</h3>
-        <h4>{TITLE}</h4>
-        <h3>GameTime</h3>
-        <h4>{parsed}</h4>
-        <h3>GameMapSize</h3>
-        <h4>
-          width {X} x height {Y}
-        </h4>
+        <h3>Game Height</h3>
+        <Input onChange={validateHeight} value={height} />
+        <h3>Game Width</h3>
+        <Input onChange={validateWidth} value={width} />
+        <h3>Mines amount</h3>
+        <Input onChange={validateMine} value={mineAmount} />
       </Body>
       <Footer>
         <button onClick={closeHandler}>Okay</button>
@@ -123,4 +120,9 @@ const Footer = styled.div`
   & button:hover {
     background-color: ${({ theme }) => theme.color.darkGray700};
   }
+`;
+
+const Input = styled.input`
+  border: 1px solid black;
+  padding: 2px 16px;
 `;

@@ -31,7 +31,7 @@ const Content = ({ type }: modalProps) => {
     return (
       <>
         <Backdrop />
-        <Custom></Custom>
+        <Custom />
       </>
     );
   }

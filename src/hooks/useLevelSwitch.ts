@@ -5,9 +5,11 @@ import { type RootState } from "@store/index";
 import { type LevelKeyType, type LevelValueType } from "@/types/level";
 import { levels } from "@/constants/level";
 import usePlayingSwitch from "./usePlayingSwitch";
+import useModal from "./useModal";
 
 const useLevelSwitch = () => {
   const { playingSwitchHandler } = usePlayingSwitch();
+  const { modalChangeHandler } = useModal();
   const dispatchLevel = useDispatch();
   const currentLevel = useSelector((state: RootState) => {
     return state.levels.value;
@@ -19,14 +21,13 @@ const useLevelSwitch = () => {
   const currentLevelStatus = levelValues.find(({ Y, TITLE }) => TITLE === currentLevel && Y)!;
 
   const levelSwitchHandler = (level: LevelKeyType) => {
+    playingSwitchHandler("stale");
     if (level === "Custom") {
-      // 커스텀 훅 정리하기
-      // useLevelSwitch 훅으로 정리하기 (커스텀 레벨까지)
+      modalChangeHandler("Custom");
       return;
-    } else {
-      playingSwitchHandler("stale");
-      dispatchLevel(change(level));
     }
+
+    dispatchLevel(change(level));
   };
 
   return { currentLevel, currentLevelStatus, levelSwitchHandler, levels, levelKeys, levelValues };
