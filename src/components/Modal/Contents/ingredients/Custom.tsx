@@ -1,17 +1,16 @@
 import { CgClose } from "react-icons/cg";
 import useModal from "@/hooks/useModal";
 import styled from "styled-components";
-import useLevelSwitch from "@/hooks/useLevelSwitch";
 import useCustomSetting from "@/hooks/useCustomSetting";
 
 const Custom = () => {
-  const { levelSwitchHandler } = useLevelSwitch();
   const { modalChangeHandler } = useModal();
   const { height, width, mineAmount, validateHeight, validateWidth, validateMine, submitHandler } = useCustomSetting();
 
   const closeHandler = () => {
     const validate = submitHandler();
     if (!validate) return;
+
     modalChangeHandler("None");
   };
 
@@ -30,6 +29,8 @@ const Custom = () => {
         <Input onChange={validateWidth} value={width} />
         <h3>Mines amount</h3>
         <Input onChange={validateMine} value={mineAmount} />
+        <span>Width & Height can be set in 10 ~ 100</span>
+        <span>Mines have to be fewer than 1/3 of all tiles</span>
       </Body>
       <Footer>
         <button onClick={closeHandler}>Okay</button>
@@ -42,7 +43,7 @@ export default Custom;
 
 const ModalContainer = styled.div`
   width: 400px;
-  height: 340px;
+  height: 360px;
   border-radius: 12px;
   background-color: white;
 
@@ -99,6 +100,10 @@ const Body = styled.div`
     ${({ theme }) => theme.font.body3r};
     margin-bottom: 8px;
   }
+
+  span {
+    ${({ theme }) => theme.font.caption1l};
+  }
 `;
 
 const Footer = styled.div`
@@ -125,4 +130,5 @@ const Footer = styled.div`
 const Input = styled.input`
   border: 1px solid black;
   padding: 2px 16px;
+  margin-bottom: 8px;
 `;

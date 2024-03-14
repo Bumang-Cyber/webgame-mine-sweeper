@@ -4,8 +4,8 @@ import styled from "styled-components";
 import useLevelSwitch from "@/hooks/useLevelSwitch";
 
 const Success = () => {
-  const { currentLevelStatus } = useLevelSwitch();
-  const { X, Y, TITLE } = currentLevelStatus;
+  const { currentLevel } = useLevelSwitch();
+  const { X, Y, TITLE } = currentLevel;
   const { modalChangeHandler } = useModal();
 
   const closeHandler = () => modalChangeHandler("None");
@@ -28,7 +28,7 @@ const Success = () => {
         <h3>GameLevel</h3>
         <h4>{TITLE}</h4>
         <h3>GameTime</h3>
-        <h4>{parsed}</h4>
+        <h4> | my Best: {parsed} s</h4>
         <h3>GameMapSize</h3>
         <h4>
           width {X} x height {Y}
@@ -101,6 +101,7 @@ const Body = styled.div`
   h4 {
     ${({ theme }) => theme.font.body3r};
     margin-bottom: 8px;
+    color: ${({ theme }) => theme.color.darkGray600};
   }
 `;
 

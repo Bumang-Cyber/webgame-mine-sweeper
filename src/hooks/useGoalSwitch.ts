@@ -3,8 +3,8 @@ import useLevelSwitch from "./useLevelSwitch";
 import useGoalStatus from "./useCountTileMap";
 
 const useGoalSwitch = () => {
-  const { currentLevel, currentLevelStatus } = useLevelSwitch();
-  const { X, Y, MINE } = currentLevelStatus;
+  const { currentLevel } = useLevelSwitch();
+  const { X, Y, MINE } = currentLevel;
 
   const { setGoalToSucceed } = useGoalStatus();
 

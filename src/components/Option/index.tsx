@@ -1,14 +1,14 @@
-import { useState } from "react";
+// import { useState } from "react";
 import styled from "styled-components";
 
 import Dropdown from "./Dropdown";
 
-import { IoVolumeMedium } from "react-icons/io5";
-import { IoVolumeMute } from "react-icons/io5";
+// import { IoVolumeMedium } from "react-icons/io5";
+// import { IoVolumeMute } from "react-icons/io5";
 import { AiOutlineColumnWidth } from "react-icons/ai";
 
 const Option = () => {
-  const [isSoundOn, setIsSoundOn] = useState(true);
+  // const [isSoundOn, setIsSoundOn] = useState(true);
 
   return (
     <OptionContainer>
@@ -17,7 +17,7 @@ const Option = () => {
         <IconButton>
           <AiOutlineColumnWidth />
         </IconButton>
-        <IconButton>{isSoundOn ? <IoVolumeMedium /> : <IoVolumeMute />}</IconButton>
+        {/* <IconButton>{isSoundOn ? <IoVolumeMedium /> : <IoVolumeMute />}</IconButton> */}
       </RightOption>
     </OptionContainer>
   );

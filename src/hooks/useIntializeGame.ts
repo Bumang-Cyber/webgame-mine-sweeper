@@ -9,8 +9,8 @@ interface initializeProps {
 }
 
 const useIntializeGame = ({ tileMapArr, colIndex, rowIndex, onSetTileMap }: initializeProps) => {
-  const { currentLevelStatus } = useLevelSwitch();
-  const { MINE, X, Y } = currentLevelStatus;
+  const { currentLevel } = useLevelSwitch();
+  const { MINE, X, Y } = currentLevel;
 
   const GenRandomMineHandler = () => {
     const copy = [...tileMapArr];

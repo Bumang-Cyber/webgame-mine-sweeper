@@ -2,8 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { change } from "@store/levelSlice";
 
 import { type RootState } from "@store/index";
-import { type LevelKeyType, type LevelValueType } from "@/types/level";
-import { levels } from "@/constants/level";
+import { LevelValueType, type LevelKeyType } from "@/types/level";
 import usePlayingSwitch from "./usePlayingSwitch";
 import useModal from "./useModal";
 
@@ -16,21 +15,19 @@ const useLevelSwitch = () => {
   });
 
   const levelKeys: LevelKeyType[] = ["Beginner", "Intermediate", "Expert", "Custom"];
-  const levelValues: LevelValueType[] = Object.values(levels);
 
-  const currentLevelStatus = levelValues.find(({ Y, TITLE }) => TITLE === currentLevel && Y)!;
-
-  const levelSwitchHandler = (level: LevelKeyType) => {
+  const levelSwitchHandler = (level: LevelValueType) => {
     playingSwitchHandler("stale");
-    if (level === "Custom") {
+    if (level.TITLE === "Custom") {
       modalChangeHandler("Custom");
+      dispatchLevel(change(level));
       return;
     }
 
     dispatchLevel(change(level));
   };
 
-  return { currentLevel, currentLevelStatus, levelSwitchHandler, levels, levelKeys, levelValues };
+  return { currentLevel, levelSwitchHandler, levelKeys };
 };
 
 export default useLevelSwitch;

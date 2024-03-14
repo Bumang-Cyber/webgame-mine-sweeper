@@ -5,6 +5,7 @@ import { type LevelKeyType } from "@/types/level";
 import { FaCheck } from "react-icons/fa";
 import useLevelSwitch from "@hooks/useLevelSwitch";
 import useModal from "@/hooks/useModal";
+import { levels } from "@/constants/level";
 
 const Dropdown = () => {
   const { currentLevel, levelSwitchHandler, levelKeys } = useLevelSwitch();
@@ -31,17 +32,24 @@ const Dropdown = () => {
         <Divider />
         {levelKeys.map((name) => (
           <MenuItem //
-            onClick={() => levelSwitchHandler(name)}
+            onClick={() =>
+              levelSwitchHandler({
+                TITLE: name,
+                X: levels[name].X,
+                Y: levels[name].Y,
+                MINE: levels[name].MINE,
+              })
+            }
             key={name}
             $cur={name}
-            $name={currentLevel}
+            $name={currentLevel.TITLE}
           >
             <FaCheck className="icon" />
             {name}
           </MenuItem>
         ))}
         <Divider />
-        <MenuItem onClick={() => modalChangeHandler("Custom")}>
+        <MenuItem onClick={() => modalChangeHandler("PersonalBest")}>
           <FaCheck className="icon" />
           Personal Best
         </MenuItem>

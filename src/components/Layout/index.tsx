@@ -40,6 +40,7 @@ export const ScreenWrapper = styled.div`
   gap: 24px;
   justify-content: center;
   align-items: center;
+  ${({ theme }) => theme.unableToDrag}
 `;
 
 export const OuterContainer = styled.main`

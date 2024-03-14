@@ -1,13 +1,18 @@
+import { LevelValueType } from "./../types/level";
 import { createSlice } from "@reduxjs/toolkit";
-import { LevelKeyType } from "@/types/level";
 
 type InitialState = {
-  value: LevelKeyType;
+  value: LevelValueType;
 };
 
 const initialState: InitialState = {
   // constant에 모든 레벨 상수화
-  value: "Beginner",
+  value: {
+    TITLE: "Beginner",
+    X: 8,
+    Y: 8,
+    MINE: 10,
+  },
 };
 
 const levelSlice = createSlice({

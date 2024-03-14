@@ -12,8 +12,8 @@ const useMineLeft = () => {
   });
 
   const { currentPlayingState } = usePlayingSwitch();
-  const { currentLevelStatus } = useLevelSwitch();
-  const { MINE } = currentLevelStatus;
+  const { currentLevel } = useLevelSwitch();
+  const { MINE } = currentLevel;
 
   useEffect(() => {
     if (currentPlayingState === "stale") {

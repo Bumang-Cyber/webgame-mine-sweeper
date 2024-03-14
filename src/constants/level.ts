@@ -21,8 +21,8 @@ export const levels: { [key: string]: LevelValueType } = {
   },
   Custom: {
     TITLE: "Custom",
-    X: 32,
-    Y: 16,
-    MINE: 100,
+    X: 10,
+    Y: 10,
+    MINE: 10,
   },
 } as const;

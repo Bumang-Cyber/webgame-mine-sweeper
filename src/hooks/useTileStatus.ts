@@ -5,9 +5,9 @@ import useLevelSwitch from "@hooks/useLevelSwitch";
 import usePlayingSwitch from "@/hooks/usePlayingSwitch";
 
 const useTileStatus = () => {
-  const { currentLevelStatus, currentLevel } = useLevelSwitch();
+  const { currentLevel } = useLevelSwitch();
   const { currentPlayingState } = usePlayingSwitch();
-  const { X, Y } = currentLevelStatus; // 현재 레벨의 X, Y값
+  const { X, Y } = currentLevel; // 현재 레벨의 X, Y값
 
   // 타일맵 생성
   const [tileMapArr, setTileMapArr] = useState(generateTileMap(X, Y));
