@@ -2,18 +2,18 @@ import styled from "styled-components";
 import Modal from "../Modal";
 import Content from "@components/Modal/Contents";
 import useModal from "@hooks/useModal";
+import usePersist from "@/hooks/usePersist";
 
 interface LayoutProps {
   children: React.ReactNode;
 }
 
 const Layout = ({ children }: LayoutProps) => {
-  const { currentModal, modalChangeHandler } = useModal();
+  const { currentModal } = useModal();
+  usePersist();
 
   return (
     <ScreenWrapper onContextMenu={(e) => e.preventDefault()}>
-      <button onClick={() => modalChangeHandler("Success")}>성공버튼</button>
-      <button onClick={() => modalChangeHandler("PersonalBest")}>퍼스널베스트 버튼</button>
       <OuterContainer>
         <Modal>{currentModal !== "None" && <Content type={currentModal} />}</Modal>
         {children}
