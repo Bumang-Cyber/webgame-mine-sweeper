@@ -25,11 +25,6 @@ const Dropdown = () => {
     <Wrapper>
       <GameOption onClick={switchVisibleHandler}>Game</GameOption>
       <MenuContainer $isVisible={isVisible}>
-        <MenuItem>
-          <FaCheck className="icon" />
-          New (f12)
-        </MenuItem>
-        <Divider />
         {levelKeys.map((name) => (
           <MenuItem //
             onClick={() =>

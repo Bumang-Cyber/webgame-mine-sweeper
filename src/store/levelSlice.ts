@@ -6,7 +6,6 @@ type InitialState = {
 };
 
 const initialState: InitialState = {
-  // constant에 모든 레벨 상수화
   value: {
     TITLE: "Beginner",
     X: 8,
