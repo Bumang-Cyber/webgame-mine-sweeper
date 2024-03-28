@@ -2,22 +2,15 @@ import { CgClose } from "react-icons/cg";
 import useModal from "@/hooks/useModal";
 import styled from "styled-components";
 import useLevelSwitch from "@/hooks/useLevelSwitch";
+import useHighScore from "@/hooks/useHighScore";
 
 const Success = () => {
   const { currentLevel } = useLevelSwitch();
   const { X, Y, TITLE } = currentLevel;
   const { modalChangeHandler } = useModal();
+  const { currentTime, highScore } = useHighScore();
 
   const closeHandler = () => modalChangeHandler("None");
-
-  const highScore = localStorage.getItem("highscore");
-  let parsedHighscore = highScore ? JSON.parse(highScore) : "";
-  if (parsedHighscore) {
-    parsedHighscore = parsedHighscore[TITLE];
-  }
-
-  const currentTime = localStorage.getItem("currentTime");
-  const parsedCurtime = currentTime ? JSON.parse(currentTime) : "";
 
   return (
     <ModalContainer>
@@ -32,7 +25,7 @@ const Success = () => {
         <h4>{TITLE}</h4>
         <h3>GameTime</h3>
         <h4>
-          time: {parsedCurtime} s | my Best: {parsedHighscore} s
+          time: {currentTime} s | my Best: {highScore} s
         </h4>
         <h3>GameMapSize</h3>
         <h4>
