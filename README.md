@@ -59,8 +59,9 @@ const initialState: InitialState = {
 
 ### 2. 맵 초기화
 
-- Y좌표, X좌표를 나타내기 위하여 2차원 배열을 전역상태로 관리합니다. 이를 통해 화면에 타일을 map함수로 렌더합니다. `ex: [[...], [...], [...]]`
-- 각각의 index에는 타일 정보 객체가 있습니다.
+- 2차원 배열 타일맵을 전역상태로 관리합니다. `ex: [[{...}, {...}, {...}, ... ], [{...}, {...}, {...}, ... ], [...]]`
+- 2차원 배열의 각각 cell에는 아래와 같은 정보 객체가 있습니다.
+- 상태들에 따라 각기 다른 식으로 렌더 됩니다.
 
 ```javascript
 export interface TileType {
@@ -82,7 +83,9 @@ export interface TileType {
 
 ### 3. 유저의 클릭과 동시에 게임 플레이 초기화(지뢰 심기, 타이머 시작)
 
-- 유저 클릭 좌표와 전후좌우 8방향에는 지뢰가 없도록 구현하였습니다.
+- 이미 지뢰가 깔려있는 타일을 눌러서 처음부터 게임오버될 가능성을 없애기 위해서 유저 클릭 시 지뢰를 뿌려줍니다.
+- 유저가 클릭한 좌표와 전후좌우 8방향에는 지뢰가 없도록 구현하였습니다.
+- while문으로 지뢰 갯수가 현재 레벨의 지뢰수만큼 찰 때까지 Math.random함수로 랜덤좌표에 뿌려줍니다.
 
 ```javascript
 // useInitializeGame훅
@@ -118,7 +121,59 @@ const useIntializeGame = ({ tileMapArr, colIndex, rowIndex, onSetTileMap }: init
       ...
 ```
 
-### 4. BFS로 근처 지뢰가 없는 열린 타일들만 열고, 숫자가 있는 타일을 만나면 멈추기 구현
+### 4. BFS로 2차원 배열을 순회하며 근처 지뢰가 없는 타일들만 열고 근처 지뢰가 있는(숫자가 있는) 타일을 만나면 멈추기 구현
+
+- 자바스크립트 배열에는 shift 메소드가 있기 때문에 이를 queue로 사용할수도 있지만 이를 사용했을 때 성능이 좋지 않아 따로 queue를 구현해주었습니다.
+  (자바스크립트 배열은 shift 실행 직후 재정렬에 시간을 O(N)의 시간을 또 쓰기 때문입니다.)
+
+```javascript
+import { TileType } from "@/types/tile";
+import { Queue } from "./queue"; // queue자료구조
+
+const detectByBfs = (Y: number, X: number, tileMapArr: TileType[][]) => {
+  const queue = new Queue();
+
+  tileMapArr[Y][X].isQuestioned = false;
+  queue.enqueue([Y, X]);
+  while (queue.getLength() !== 0) {
+    const cur = queue.dequeue();
+    if (!cur) return;
+
+    const [curY, curX] = cur;
+
+    tileMapArr[curY][curX].isOpened = true;
+    if (tileMapArr[curY][curX].mineNearby > 0) return;
+
+    for (const nxt of [ // 현재 타일의 전후좌우 8방향 순회
+      [curY - 1, curX],
+      [curY + 1, curX],
+      [curY, curX - 1],
+      [curY, curX + 1],
+      [curY - 1, curX - 1],
+      [curY - 1, curX + 1],
+      [curY + 1, curX - 1],
+      [curY + 1, curX + 1],
+    ]) {
+      if (
+        tileMapArr[nxt[0]] !== undefined && //
+        tileMapArr[nxt[0]][nxt[1]] !== undefined &&
+        tileMapArr[nxt[0]][nxt[1]].isMined === false &&
+        tileMapArr[nxt[0]][nxt[1]].isOpened === false
+      ) {
+        tileMapArr[nxt[0]][nxt[1]].isOpened = true;
+        if (tileMapArr[nxt[0]][nxt[1]].mineNearby === 0) {
+          queue.enqueue(nxt as number[]);
+        }
+      }
+    }
+  }
+
+  return;
+};
+
+export default detectByBfs;
+
+```
 
 <br>
 <br>
@@ -157,9 +212,14 @@ const useIntializeGame = ({ tileMapArr, colIndex, rowIndex, onSetTileMap }: init
 
 ### 1. 렌더링 최적화
 
-- 보통 재귀함수로 구현하는 DFS가 더욱 짧은 코드로 구현 가능하지만 BFS보다 성능 효율은 떨어집니다. 맵 설정이 100x100 이상의 사이즈까지 가능하기 때문에 재귀함수로 맵탐색을 구현할 시 콜스택에 재귀함수가 쌓여 메모리가 소진되는 일이 발생할 수 있다는 점을 고려하여 BFS를 선택하였습니다.
+- 보통 재귀함수로 구현하는 DFS가 더욱 짧은 코드로 구현 가능하지만 2차원 배열을 순회할 때 BFS보다 성능 효율은 떨어집니다. 특히 맵 설정이 100x100 이상의 사이즈까지 가능하기 때문에 DFS 재귀함수로 구현할 시 콜스택의 오버플로우가 발생할 수 있다는 점을 고려하여 BFS를 선택하였습니다.
 
 ### 2. 사용자 친화적인 UI/UX
 
 - 호버 시 내가 클릭 가능한 타일의 색이 바뀝니다.
 - 내 최고 기록과 현재 기록을 비교할 수 있습니다.
+
+### 3. 핵심 로직을 커스텀 훅으로 추상화. 재사용성을 높여 반복되는 코드를 제거.
+
+- 전역상태인 현재 플레이 상태와 현재 레벨은 거의 모든 컴포넌트에 영향을 줍니다.
+- 그러므로 각기 다른 컴포넌트에 모두 전역 상태를 불러오는 코드를 반복해서 쓰기보단 커스텀 훅으로 정리하여 로직 추상화를 진행하였습니다.

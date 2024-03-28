@@ -1,7 +1,6 @@
 import { TileType } from "@/types/tile";
 import { Queue } from "./queue";
 
-//
 const detectByBfs = (Y: number, X: number, tileMapArr: TileType[][]) => {
   const queue = new Queue();
 
@@ -11,7 +10,6 @@ const detectByBfs = (Y: number, X: number, tileMapArr: TileType[][]) => {
     const cur = queue.dequeue();
     if (!cur) return;
 
-    // DO SOMETHING WITH cur
     const [curY, curX] = cur;
 
     tileMapArr[curY][curX].isOpened = true;
