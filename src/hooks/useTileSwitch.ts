@@ -3,6 +3,8 @@ import usePlayingSwitch from "./usePlayingSwitch";
 import useIntializeGame from "@/hooks/useIntializeGame";
 import detectByBfs from "@/utils/detectByBfs";
 
+import useSound from "@/hooks/useSound";
+
 interface useTileSwitchProps {
   item: TileType;
   tileMapArr: TileType[][];
@@ -17,6 +19,8 @@ const useTileSwitch = ({ item, tileMapArr, onSetTileMap, rowIndex, colIndex }: u
 
   const { currentPlayingState, playingSwitchHandler } = usePlayingSwitch();
   const { GenRandomMineHandler } = useIntializeGame({ tileMapArr, colIndex, rowIndex, onSetTileMap });
+
+  const { soundLeftClick, soundFlag, soundQuestion, soundGameOver } = useSound();
 
   // 왼쪽 클릭
   const tileLeftClickHandler = (e: React.MouseEvent) => {
@@ -45,11 +49,13 @@ const useTileSwitch = ({ item, tileMapArr, onSetTileMap, rowIndex, colIndex }: u
       playingSwitchHandler("gameOver");
       copy[rowIndex][colIndex].isOpened = true;
       onSetTileMap(copy);
+      soundGameOver.play();
       return;
     }
 
     detectByBfs(rowIndex, colIndex, copy);
     onSetTileMap(copy);
+    soundLeftClick.play();
   };
 
   // 오른쪽 클릭
@@ -72,9 +78,11 @@ const useTileSwitch = ({ item, tileMapArr, onSetTileMap, rowIndex, colIndex }: u
     if (isStaled) {
       copy[rowIndex][colIndex].isStaled = false;
       copy[rowIndex][colIndex].isFlagged = true;
+      soundFlag.play();
     } else if (isFlagged) {
       copy[rowIndex][colIndex].isFlagged = false;
       copy[rowIndex][colIndex].isQuestioned = true;
+      soundQuestion.play();
     } else if (isQuestioned) {
       copy[rowIndex][colIndex].isQuestioned = false;
       copy[rowIndex][colIndex].isStaled = true;

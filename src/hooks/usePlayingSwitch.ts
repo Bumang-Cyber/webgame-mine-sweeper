@@ -2,6 +2,7 @@ import { RootState } from "./../store/index";
 import { useDispatch, useSelector } from "react-redux";
 import { change } from "@/store/playingStateSlice";
 import { playingType } from "@/types/playing";
+import { soundWin } from "@/hooks/useSound";
 
 const usePlayingSwitch = () => {
   const dispatchPlayingState = useDispatch();
@@ -12,6 +13,7 @@ const usePlayingSwitch = () => {
   const playingStates: playingType[] = ["stale", "playing", "gameOver", "success"];
 
   const playingSwitchHandler = (state: playingType) => {
+    if (state === "success") soundWin.play();
     dispatchPlayingState(change(state));
   };
 

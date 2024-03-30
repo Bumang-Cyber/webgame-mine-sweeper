@@ -7,7 +7,7 @@ const detectByBfs = (Y: number, X: number, tileMapArr: TileType[][]) => {
   tileMapArr[Y][X].isQuestioned = false;
   queue.enqueue([Y, X]);
   while (queue.getLength() !== 0) {
-    const cur = queue.dequeue();
+    const cur = queue.dequeue(); //
     if (!cur) return;
 
     const [curY, curX] = cur;
@@ -15,6 +15,7 @@ const detectByBfs = (Y: number, X: number, tileMapArr: TileType[][]) => {
     tileMapArr[curY][curX].isOpened = true;
     if (tileMapArr[curY][curX].mineNearby > 0) return;
 
+    // 현재 타일 기준 동서남북 8방향
     for (const nxt of [
       [curY - 1, curX],
       [curY + 1, curX],

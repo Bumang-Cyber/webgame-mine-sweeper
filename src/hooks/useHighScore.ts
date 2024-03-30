@@ -21,6 +21,7 @@ const useHighScore = () => {
       console.log(parsedHighScore[parsedLevel.TITLE], "parsedHighscore[parsedLevel]");
       setHighScore(parsedHighScore[parsedLevel.TITLE]);
     }
+
     //eslint-disable-next-line
   }, [currentModal]);
 
