@@ -1,11 +1,13 @@
 import styled from "styled-components";
 
 import Dropdown from "./Dropdown";
+import Mute from "./Mute";
 
 const Option = () => {
   return (
     <OptionContainer>
       <Dropdown />
+      <Mute />
     </OptionContainer>
   );
 };

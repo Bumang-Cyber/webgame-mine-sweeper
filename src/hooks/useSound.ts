@@ -8,7 +8,7 @@ import musicReset from "@/assets/music-reset.wav";
 
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "./../store/index";
-import { change } from "@/store/levelSlice";
+import { change } from "@/store/muteSlice";
 
 export const soundLeftClick = new Audio(musicLeftClick);
 export const soundFlag = new Audio(musicFlag);
