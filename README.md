@@ -68,11 +68,11 @@ export interface TileType {
   // 타일 아이디
   id: string;
 
-  // 왼쪽 클릭으로 편집 가능
+  // 왼쪽 클릭으로 전환 가능한 옵션
   isOpened: boolean; // 열림 여부
   isMined: boolean; // 지뢰 유무 여부
 
-  // 오른쪽 클릭으로 편집 가능
+  // 오른쪽 클릭으로 전환 가능한 옵션
   isStaled: boolean; // 보통 상태인지 아닌지
   isFlagged: boolean; // 깃발이 꽃혀져 있는지 아닌지
   isQuestioned: boolean; // 물음표 상태인지 아닌지
