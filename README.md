@@ -18,6 +18,7 @@ https://webgame-mine-sweeper-ha2g8g085-bumang-cyber.vercel.app/
   - [x] Beginner (8X8) 지뢰 10개, Intermediate (16X16) 지뢰 40개, Expert (32X16) 지뢰 100개
   - [x] Custom (가로, 세로, 지뢰 수 조정 가능)
     - [x] 설정 가능한 가로, 세로는 최대 100 x 100이며, 지뢰수는 격자칸 수의 1/3 이하로 설정 가능합니다.
+- [x] 전역상태관리로는 redux-toolkit을 사용합니다.
 
 <br>
 

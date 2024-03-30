@@ -1,16 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { ModalType } from "@/types/modal";
 
 type InitialState = {
-  value: ModalType;
+  value: boolean;
 };
 
 const initialState: InitialState = {
-  value: "None",
+  value: false,
 };
 
-const modalSlice = createSlice({
-  name: "modal",
+const muteSlice = createSlice({
+  name: "mute",
   initialState,
   reducers: {
     change: (state, action) => {
@@ -19,5 +18,5 @@ const modalSlice = createSlice({
   },
 });
 
-export default modalSlice;
-export const { change } = modalSlice.actions;
+export default muteSlice;
+export const { change } = muteSlice.actions;

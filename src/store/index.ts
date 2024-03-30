@@ -5,6 +5,7 @@ import goalAmountSlice from "./goalAmountSlice";
 import mineLeftSlice from "./mineLeftSlice";
 import modalSlice from "./modalSlice";
 import timeSlice from "./timeSlice";
+import muteSlice from "./muteSlice";
 
 const store = configureStore({
   reducer: {
@@ -14,6 +15,7 @@ const store = configureStore({
     mineLeft: mineLeftSlice.reducer,
     modal: modalSlice.reducer,
     time: timeSlice.reducer,
+    mute: muteSlice.reducer,
   },
 });
 

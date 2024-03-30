@@ -1,12 +1,15 @@
 import usePlayingSwitch from "@/hooks/usePlayingSwitch";
-import { soundReset } from "@/hooks/useSound";
+import useSound from "@/hooks/useSound";
+
 import styled from "styled-components";
 
 const RestartEmojiPanel = () => {
   const { currentPlayingState, playingSwitchHandler } = usePlayingSwitch();
+  const { playSoundHandler } = useSound();
 
   const clickEmojiHander = () => {
-    soundReset.play();
+    playSoundHandler("soundReset");
+
     playingSwitchHandler("stale");
   };
 

@@ -6,6 +6,10 @@ import musicQuestion from "@/assets/music-question.wav";
 import musicWin from "@/assets/music-win.wav";
 import musicReset from "@/assets/music-reset.wav";
 
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "./../store/index";
+import { change } from "@/store/levelSlice";
+
 export const soundLeftClick = new Audio(musicLeftClick);
 export const soundFlag = new Audio(musicFlag);
 export const soundQuestion = new Audio(musicQuestion);
@@ -25,7 +29,43 @@ soundWin.volume = 0.5;
 soundReset.preload = "auto";
 
 const useSound = () => {
-  return { soundLeftClick, soundFlag, soundQuestion, soundGameOver, soundHighScore, soundWin, soundReset };
+  const dispatchMuteState = useDispatch();
+  const currentMuteState = useSelector((state: RootState) => {
+    return state.mute.value;
+  });
+
+  const muteHandler = (state: boolean) => {
+    dispatchMuteState(change(state));
+  };
+
+  const playSoundHandler = (state: "soundLeftClick" | "soundFlag" | "soundQuestion" | "soundGameOver" | "soundHighScore" | "soundWin" | "soundReset") => {
+    if (currentMuteState) return;
+    switch (state) {
+      case "soundLeftClick":
+        soundLeftClick.play();
+        break;
+      case "soundFlag":
+        soundFlag.play();
+        break;
+      case "soundQuestion":
+        soundQuestion.play();
+        break;
+      case "soundGameOver":
+        soundGameOver.play();
+        break;
+      case "soundHighScore":
+        soundHighScore.play();
+        break;
+      case "soundWin":
+        soundWin.play();
+        break;
+      case "soundReset":
+        soundReset.play();
+        break;
+    }
+  };
+
+  return { currentMuteState, playSoundHandler, muteHandler };
 };
 
 export default useSound;
