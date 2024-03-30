@@ -1,5 +1,11 @@
 ## MineSweeper
 
+<img src="./src/assets/mine-sweeper.png">
+
+## 배포 링크
+
+https://webgame-mine-sweeper-ha2g8g085-bumang-cyber.vercel.app/
+
 ## 구현 사항
 
 모두 구현 완료
@@ -221,7 +227,9 @@ export default detectByBfs;
 
 ### 3. 핵심 로직을 커스텀 훅으로 추상화. 재사용성을 높여 반복되는 코드를 제거.
 
-- 전역상태인 현재 플레이 상태와 현재 레벨은 거의 모든 컴포넌트에 영향을 줍니다.
+<img src="./src/assets/hooks.png">
+
+- 전역상태인 `현재 플레이 상태`와 `현재 레벨`은 거의 모든 컴포넌트에 영향을 줍니다.
 - 그러므로 각기 다른 컴포넌트에 모두 전역 상태를 불러오는 코드를 반복해서 쓰기보단 커스텀 훅으로 정리하여 로직 추상화를 진행하였습니다.
 
 ### 4. React.Memo를 통해 generateTileMap 함수가 여러 번 실행되는 것을 방지
