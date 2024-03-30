@@ -4,7 +4,7 @@
 
 ## 배포 링크
 
-https://webgame-mine-sweeper-ha2g8g085-bumang-cyber.vercel.app/
+https://webgame-mine-sweeper.vercel.app/
 
 ## 구현 사항
 
