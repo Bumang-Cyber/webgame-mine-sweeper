@@ -6,7 +6,7 @@
 
 https://webgame-mine-sweeper.vercel.app/
 
-## 구현 사항
+## 구현 기간
 
 2024.03.04 - 2024.03.07 (총 4일)
 
