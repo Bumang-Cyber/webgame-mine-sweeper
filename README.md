@@ -1,6 +1,6 @@
 ## MineSweeper
 
-<img src="./src/assets/mine-sweeper.png">
+![mine](https://github.com/Bumang-Cyber/webgame-mine-sweeper/assets/126222848/a83242ff-ff36-4c85-be55-fc7a758305bb)
 
 ## 배포 링크
 
