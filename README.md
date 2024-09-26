@@ -240,4 +240,4 @@ export default detectByBfs;
 
 ### 4. React.Memo를 통해 generateTileMap 함수가 여러 번 실행되는 것을 방지
 
-- React.Memo를 써서 레벨이 바뀌는 경우에만 호출하고, 그 외엔 이전값을 계속 유지하게 설정하였습니다.
+- React.Memo를 써서 레벨이 바뀌는 경우에만 맵 생성 함수를 호출하고, 그 외엔 이전값을 계속 유지하게 설정하였습니다.
